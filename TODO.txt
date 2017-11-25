@@ -1,0 +1,3 @@
+[OK] App name in urls.py: tutorial03
+
+[  ] Static location for css and fonts

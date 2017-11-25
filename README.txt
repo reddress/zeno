@@ -5,7 +5,7 @@ A collection of productivity and personal organization apps.
 Set USE_TZ = False
 
 - pollsbasic: Tutorial up to "basic math/calculator" comment
-- pollscalc: Tutorial "using a calculator"
+- polls: Tutorial "using a calculator," starting from Part 4
 - bulletinboard: users can post, anyone can read
 - todo: Tasks
 - diary: Mytags/tagdiary
