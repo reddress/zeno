@@ -1,20 +1,21 @@
 Zeno
 
-A collection of productivity and personal organization apps.
+A collection of productivity and personal organization apps
 
 Set TIME_ZONE to 'America/Sao_Paulo'
+Set LOGIN_URL, LOGIN_REDIRECT_URL, and LOGOUT_REDIRECT_URL
 
-- pollsbasic: Tutorial up to "basic math/calculator" comment
-- polls: Tutorial "using a calculator," starting from Part 4
-- bulletinboard: users can post, anyone can read
-- todo: Tasks
-- diary: Mytags/tagdiary
-- money: Alexie Beans clone
+[OK] pollsbasic: Tutorial up to "basic math/calculator" comment
+[OK] polls: Tutorial using class-based views, starting from Part 4
+[OK] bulletinboard: users can post, anyone can read
+[  ] todo: Tasks
+[  ] diary: Mytags/tagdiary
+[  ] money: Alexie Beans clone
 
 Pontual-related
 - Aguardando
 
-* Ubuntu setup
+### Ubuntu setup
 
 Installing Django
 
@@ -29,7 +30,7 @@ zeno$ python manage.py runserver
 
 ~$ source django2.0/bin/activate
 
-Create a .gitignore
+### Create a .gitignore
 
 __pycache__/
 *.py[cod]
@@ -44,4 +45,5 @@ media/
 # settings
 zeno/settings.py
 
+# 'touch runserver' to tab-complete
 runserver

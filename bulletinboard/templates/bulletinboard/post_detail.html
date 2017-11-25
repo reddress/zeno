@@ -1,6 +1,8 @@
+<a href="{% url "bulletinboard:index" %}">Back to Bulletin Board</a>
+
 <h1>{{ post.title }}</h1>
 
-{{ post.pub_date }}
+by {{ post.author }} on {{ post.pub_date }}
 
 <p>
     {{ post.body }}

@@ -2,6 +2,8 @@
 
 <link rel="stylesheet" href="{% static "css/fonts.css" %}">
 
+<a href="{% url "users:index" %}">Back to Zeno Home</a>
+
 <h1>Bulletin Board</h1>
 
 {% if user.is_authenticated %}
@@ -10,7 +12,7 @@
 
 {% for post in latest_posts %}
 <p>
-    {{ post.pub_date }} <a href="{% url "bulletinboard:detail" post.pk %}" class="satisfy">{{ post.title }}</a>
+    On {{ post.pub_date }} {{ post.author }} wrote <a href="{% url "bulletinboard:detail" post.pk %}" class="satisfy">{{ post.title }}</a>
 
 </p>
 {% endfor %}
