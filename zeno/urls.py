@@ -24,5 +24,6 @@ urlpatterns = [
     path('pollsbasic/', include('pollsbasic.urls')),
     path('polls/', include('polls.urls')),
     path('bulletinboard/', include('bulletinboard.urls')),
+    path('todo/', include('todo.urls')),
     path('', include('users.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

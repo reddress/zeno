@@ -1,0 +1,1 @@
+[  ] How to make it as real-time as possible? AJAX on every checkbox click?

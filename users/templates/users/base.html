@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="{% static "css/fonts.css" %}">
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+        <title>{% block title %}{% endblock %} - Zeno</title>
+    </head>
+    <body>
+        <!-- ZENO HEADER -->
+
+        <div id="zenoHeader">
+            {% if user.is_authenticated %}
+            {{ user }}'s
+            {% endif %}
+            
+            <a href="/">Zeno</a>
+            
+            <a href="/admin">Admin</a>
+            <a href="{% url "bulletinboard:index" %}">Bulletin Board</a>
+            <a href="{% url "todo:index" %}">Todo</a>
+        </div>
+        
+        {% block content %}{% endblock %}
+    </body>
+</html>

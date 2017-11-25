@@ -1,9 +1,8 @@
+{% extends "users/base.html" %}
+
+{% block content %}
+
 <h1>Home</h1>
-
-<a href="/admin">Admin</a>
-<a href="{% url "bulletinboard:index" %}">Bulletin Board</a>
-
-<hr>
 
 {% if not user.is_authenticated %}
 
@@ -17,3 +16,5 @@ Hello {{ user }}!
 <a href="{% url 'users:logout' %}">Logout</a>
 
 {% endif %}
+
+{% endblock %}

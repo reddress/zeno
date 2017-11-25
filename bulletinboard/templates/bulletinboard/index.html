@@ -1,8 +1,6 @@
-{% load static %}
+{% extends 'users/base.html' %}
 
-<link rel="stylesheet" href="{% static "css/fonts.css" %}">
-
-<a href="{% url "users:index" %}">Back to Zeno Home</a>
+{% block content %}
 
 <h1>Bulletin Board</h1>
 
@@ -16,3 +14,5 @@
 
 </p>
 {% endfor %}
+
+{% endblock %}
