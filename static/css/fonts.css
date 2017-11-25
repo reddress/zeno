@@ -4,7 +4,18 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: "Satisfy";
+    src: url("../fonts/Satisfy-Regular.ttf") format("truetype");
+    font-style: normal;
+}
+
 .yesteryear {
     font-family: 'Yesteryear';
+    font-size: 1.6em;
+}
+
+.satisfy {
+    font-family: 'Satisfy';
     font-size: 1.6em;
 }

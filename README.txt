@@ -2,7 +2,7 @@ Zeno
 
 A collection of productivity and personal organization apps.
 
-Set USE_TZ = False
+Set TIME_ZONE to 'America/Sao_Paulo'
 
 - pollsbasic: Tutorial up to "basic math/calculator" comment
 - polls: Tutorial "using a calculator," starting from Part 4
