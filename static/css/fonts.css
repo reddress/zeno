@@ -1,0 +1,10 @@
+@font-face {
+    font-family: "Yesteryear";
+    src: url("../fonts/Yesteryear-Regular.ttf") format("truetype");
+    font-style: normal;
+}
+
+.yesteryear {
+    font-family: 'Yesteryear';
+    font-size: 1.6em;
+}

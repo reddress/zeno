@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="/static/css/fonts.css">
+
+<h1>Polls Index</h1>
+
+{% if latest_question_list %}
+<ul>
+    {% for question in latest_question_list %}
+    <!-- <li><a href="/polls/{{ question.id }}/"> -->
+    <li class="yesteryear"><a href="{% url 'polls:detail' question.id %}">
+        {{ question.question_text }}</a></li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No polls available</p>
+{% endif %}
