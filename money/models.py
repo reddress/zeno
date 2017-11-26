@@ -16,13 +16,15 @@ class Currency(models.Model):
     name = models.CharField(max_length=80)  # New Taiwan Dollar
     code = models.CharField(max_length=6)   # TWD
     symbol = models.CharField(max_length=6) # NT$
-
+    show_cents = models.BooleanField(default=True)
+    
     def __str__(self):
         return "{}'s {}".format(self.owner, self.code)
 
     class Meta:
         verbose_name_plural = "Currencies"
 
+        
 class AccountType(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
@@ -30,6 +32,7 @@ class AccountType(models.Model):
 
     def __str__(self):
         return "{}'s {}".format(self.owner, self.name)
+
 
 class Account(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -40,6 +43,7 @@ class Account(models.Model):
     def __str__(self):
         return "{}'s {}".format(self.owner, self.name)
 
+
 class Budget(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
@@ -49,6 +53,7 @@ class Budget(models.Model):
     def __str__(self):
         return "{}'s budget for {}: {}".format(self.owner, self.account, self.amount)
 
+    
 class Transaction(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     debit = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="debit_transactions")
@@ -59,7 +64,20 @@ class Transaction(models.Model):
     occurred = models.DateTimeField()
 
     def __str__(self):
-        return "{}'s {} on {}: {}".format(self.owner, self.name, self.occurred.strftime("%d/%m/%y"), self.amount)
+        display_str = "{}'s {} on {}: {} {}"
+        return display_str.format(self.owner, self.name,
+                                  self.occurred.strftime("%d/%m/%y"),
+                                  self.currency.symbol, self.amount)
+
+    
+class Tag(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    accounts = models.ManyToManyField(Account)
+
+    def __str__(self):
+        return "{}'s {}".format(self.owner, self.name)
+
     
 class Settings(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
