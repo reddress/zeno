@@ -18,11 +18,12 @@ class Currency(models.Model):
     symbol = models.CharField(max_length=6) # NT$
     show_cents = models.BooleanField(default=True)
     
+    class Meta:
+        ordering = ['owner', 'code']
+        verbose_name_plural = "Currencies"
+
     def __str__(self):
         return "{}'s {}".format(self.owner, self.code)
-
-    class Meta:
-        verbose_name_plural = "Currencies"
 
         
 class AccountType(models.Model):
@@ -30,6 +31,9 @@ class AccountType(models.Model):
     name = models.CharField(max_length=80)
     equity_type = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['owner', 'name']
+        
     def __str__(self):
         return "{}'s {}".format(self.owner, self.name)
 
@@ -40,6 +44,9 @@ class Account(models.Model):
     name = models.CharField(max_length=100)
     abbreviation = models.CharField(max_length=20)
 
+    class Meta:
+        ordering = ['owner', 'name']
+        
     def __str__(self):
         return "{}'s {}".format(self.owner, self.name)
 
@@ -50,6 +57,9 @@ class Budget(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=12, decimal_places=2, default=Decimal("0.00"))
 
+    class Meta:
+        ordering = ['owner', 'account']
+        
     def __str__(self):
         return "{}'s budget for {}: {}".format(self.owner, self.account, self.amount)
 
@@ -61,8 +71,11 @@ class Transaction(models.Model):
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     amount = models.DecimalField(max_digits=12, decimal_places=2, default=Decimal("0.00"))
-    occurred = models.DateTimeField()
+    when = models.DateTimeField()
 
+    class Meta:
+        ordering = ['owner', 'when']
+    
     def __str__(self):
         display_str = "{}'s {} on {}: {} {}"
         return display_str.format(self.owner, self.name,
@@ -75,6 +88,9 @@ class Tag(models.Model):
     name = models.CharField(max_length=50)
     accounts = models.ManyToManyField(Account)
 
+    class Meta:
+        ordering = ['owner', 'name']
+        
     def __str__(self):
         return "{}'s {}".format(self.owner, self.name)
 
@@ -87,4 +103,5 @@ class Settings(models.Model):
         return "{}'s settings".format(self.owner)
     
     class Meta:
+        ordering = ['owner']
         verbose_name_plural = "Settings"
