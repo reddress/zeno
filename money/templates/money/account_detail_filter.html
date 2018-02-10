@@ -1,0 +1,24 @@
+{% extends 'money/base.html' %}
+
+{% block moneyContent %}
+
+<h1>Account Detail Filter</h1>
+
+<p>
+    <a href="{% url "money:accountList" %}">All Accounts</a>
+</p>
+
+{{ object }}
+{{ object.balance }}
+<a href="{% url "money:accountUpdate" object.id %}">update</a> <a href="{% url "money:accountDelete" object.id %}">delete</a>
+
+
+{% for transaction in transactions %}
+
+<p>
+    {{ transaction }}
+</p>
+
+{% endfor %}
+
+{% endblock %}

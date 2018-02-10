@@ -80,7 +80,7 @@ urlpatterns = [
          name="transactionDelete"),
 
     
-    # Filter transactions
+    # Account Type summary: filter transactions
     
     # Account Type summary for default currency, given 'from' and 'to' dates
     path('accountType/<int:from_y>/<int:from_m>/<int:from_d>/<int:to_y>/<int:to_m>/<int:to_d>/',
@@ -105,5 +105,32 @@ urlpatterns = [
     path('accountType/<str:currency_code>/<int:from_y>/<int:from_m>/<int:from_d>/',
          login_required(account_type.AccountTypeListCurrencyFrom.as_view()),
          name='accountTypeListCurrencyFrom'),
+
+
+    # Account summary: filter transactions
+
+    # Account summary for default currency, given 'from' and 'to' dates
+    path('account/<int:pk>/<int:from_y>/<int:from_m>/<int:from_d>/<int:to_y>/<int:to_m>/<int:to_d>/',
+         login_required(account.AccountDetailTime.as_view()),
+         name='accountDetailTime'),
+
+    # Account summary for given currency, all dates
+    path('account/<int:pk>/<str:currency_code>/',
+         login_required(account.AccountDetailCurrency.as_view()),
+         name='accountDetailCurrency'),
+
+    # Account summary for given currency and 'from' and 'to' dates
+    path('account/<int:pk>/<str:currency_code>/<int:from_y>/<int:from_m>/<int:from_d>/<int:to_y>/<int:to_m>/<int:to_d>/',
+         login_required(account.AccountDetailCurrencyTime.as_view()),
+         name='accountDetailCurrencyTime'),
+
+    # Account summary starting from given date
+    path('account/<int:pk>/<int:from_y>/<int:from_m>/<int:from_d>/',
+         login_required(account.AccountDetailFrom.as_view()),
+         name='accountDetailFrom'),
+    
+    path('account/<int:pk>/<str:currency_code>/<int:from_y>/<int:from_m>/<int:from_d>/',
+         login_required(account.AccountDetailCurrencyFrom.as_view()),
+         name='accountDetailCurrencyFrom'),
 
 ]
