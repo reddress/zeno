@@ -2,8 +2,7 @@ from django.urls import path
 from django.contrib.auth.decorators import login_required
 
 from .views import general
-from .views import account_type
-from .views import account
+from .views import account_type, account, transaction
 
 app_name = 'money'
 
@@ -34,6 +33,7 @@ urlpatterns = [
          login_required(account_type.AccountTypeDelete.as_view()),
          name="accountTypeDelete"),
 
+    
     # Account
 
     path('account/',
@@ -56,4 +56,27 @@ urlpatterns = [
          login_required(account.AccountDelete.as_view()),
          name="accountDelete"),
 
+
+    # Transaction
+
+    path('transaction/',
+         login_required(transaction.TransactionList.as_view()),
+         name='transactionList'),
+    
+    path('transaction/<int:pk>/',
+         login_required(transaction.TransactionDetail.as_view()),
+         name='transactionDetail'),
+    
+    path('transaction/create/',
+         login_required(transaction.TransactionCreate.as_view()),
+         name="transactionCreate"),
+
+    path('transaction/update/<int:pk>/',
+         login_required(transaction.TransactionUpdate.as_view()),
+         name="transactionUpdate"),
+
+    path('transaction/delete/<int:pk>/',
+         login_required(transaction.TransactionDelete.as_view()),
+         name="transactionDelete"),
+    
 ]

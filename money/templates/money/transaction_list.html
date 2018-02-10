@@ -1,0 +1,21 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<h1>Transactions</h1>
+
+<p>
+    <a href="{% url "money:transactionCreate" %}">
+        New Transaction
+    </a>
+</p>
+
+<ul>
+    {% for transaction in object_list %}
+    <li>
+        <a href="{% url "money:transactionDetail" transaction.id %}">{{ transaction }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

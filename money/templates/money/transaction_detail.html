@@ -1,0 +1,13 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<h1>Transaction</h1>
+
+<p>
+    <a href="{% url "money:transactionList" %}">All Transactions</a>
+</p>
+
+{{ object }} <a href="{% url "money:transactionUpdate" object.id %}">update</a> <a href="{% url "money:transactionDelete" object.id %}">delete</a>
+
+{% endblock %}

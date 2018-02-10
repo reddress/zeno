@@ -24,7 +24,8 @@ class Currency(models.Model):
         verbose_name_plural = "Currencies"
 
     def __str__(self):
-        return "{}'s {}".format(self.owner, self.code)
+        # return "{}'s {}".format(self.owner, self.code)
+        return "{} [{}]".format(self.code, self.owner)
 
         
 class AccountType(models.Model):
@@ -39,7 +40,7 @@ class AccountType(models.Model):
         return reverse('money:accountTypeDetail', kwargs={'pk': self.pk})
     
     def __str__(self):
-        return "{}'s {}".format(self.owner, self.name)
+        return "{} [{}]".format(self.name, self.owner)
 
 
 class Account(models.Model):
@@ -55,7 +56,7 @@ class Account(models.Model):
         return reverse('money:accountDetail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        return "{}'s {}".format(self.owner, self.name)
+        return "{} [{}]".format(self.abbreviation, self.owner)
 
 
 class Budget(models.Model):
@@ -68,7 +69,7 @@ class Budget(models.Model):
         ordering = ['owner', 'account']
         
     def __str__(self):
-        return "{}'s budget for {}: {}".format(self.owner, self.account, self.amount)
+        return "{} budget: {} {} [{}]".format(self.account.abbreviation, self.currency.code, self.amount, self.owner)
 
     
 class Transaction(models.Model):
@@ -81,13 +82,19 @@ class Transaction(models.Model):
     when = models.DateTimeField()
 
     class Meta:
-        ordering = ['owner', 'when']
+        ordering = ['owner', '-when']
     
+    def get_absolute_url(self):
+        return reverse('money:transactionDetail', kwargs={'pk': self.pk})
+
     def __str__(self):
-        display_str = "{}'s {} on {}: {} {}"
-        return display_str.format(self.owner, self.name,
-                                  self.occurred.strftime("%d/%m/%y"),
-                                  self.currency.symbol, self.amount)
+        display_str = "{}: {} {} {}/{} [{}]"
+        return display_str.format(self.when.strftime("%d/%m/%y"),
+                                  self.name,
+                                  self.currency.symbol, self.amount,
+                                  self.debit.abbreviation,
+                                  self.credit.abbreviation,
+                                  self.owner)
 
     
 class Tag(models.Model):
@@ -99,7 +106,7 @@ class Tag(models.Model):
         ordering = ['owner', 'name']
         
     def __str__(self):
-        return "{}'s {}".format(self.owner, self.name)
+        return "{} [{}]".format(self.name, self.owner)
 
     
 class Settings(models.Model):

@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+
+<h1>Really delete Transaction?</h1>
+
+{{ object }}
+
+<form method="post">
+    {% csrf_token %}
+    <input type="submit">
+</form>
+
+{% endblock %}
