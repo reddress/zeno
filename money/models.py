@@ -51,6 +51,9 @@ class Account(models.Model):
     class Meta:
         ordering = ['owner', 'name']
         
+    def get_absolute_url(self):
+        return reverse('money:accountDetail', kwargs={'pk': self.pk})
+
     def __str__(self):
         return "{}'s {}".format(self.owner, self.name)
 

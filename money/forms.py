@@ -1,9 +1,8 @@
 from django.forms import ModelForm
 
-# from .models import AccountType
+from .models import Account
 
-# class AccountTypeForm(ModelForm):
-#     class Meta:
-#         model = AccountType
-#         fields = '__all__'
-        
+class AccountForm(ModelForm):
+    class Meta:
+        model = Account
+        fields = ('account_type', 'name', 'abbreviation')
