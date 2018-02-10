@@ -22,6 +22,7 @@ class Currency(models.Model):
     
     class Meta:
         ordering = ['owner', 'code']
+        unique_together = ('owner', 'code')
         verbose_name_plural = "Currencies"
 
     def __str__(self):
@@ -65,9 +66,11 @@ class Account(models.Model):
     class Meta:
         ordering = ['owner', 'name']
 
-    def balance(self, currency=None, from_when=None, to_when=None):
-        if currency is None:
+    def balance(self, currency_code=None, from_when=None, to_when=None):
+        if currency_code is None:
             currency = Settings.objects.get(owner=self.owner).default_currency
+        else:
+            currency = Currency.objects.get(owner=self.owner, code=currency_code)
             
         debit_transactions = self.debit_transactions.filter(owner=self.owner, currency=currency)
         credit_transactions = self.credit_transactions.filter(owner=self.owner, currency=currency)
