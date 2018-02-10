@@ -6,12 +6,12 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Currency
+# Settings
 # AccountType
 # Account
 # Budget
 # Transaction
-# Settings (default currency, get first if this is not set)
-# AccountTag (for grouping accounts, do mytags first)
+# AccountTag (for grouping accounts)
 
 class Currency(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,7 +29,6 @@ class Currency(models.Model):
         return "{} [{}]".format(self.code, self.owner)
 
         
-    
 class Settings(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     default_currency = models.ForeignKey(Currency, on_delete=models.CASCADE, blank=True, null=True)
