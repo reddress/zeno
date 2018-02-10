@@ -5,7 +5,11 @@
 <h1>Money</h1>
 
 <p>
-    <a href="accountTypes/">Account Types</a>
+    <a href="{% url "money:accountTypeCreate" %}">New Account Type</a>
+</p>
+
+<p>
+    <a href="{% url "money:accountTypeList" %}">Account Types</a>
 </p>
 
 {% endblock %}

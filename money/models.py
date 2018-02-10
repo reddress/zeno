@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from django.db import models
+from django.urls import reverse
 from django.contrib.auth.models import User
 
 # Currency
@@ -33,7 +34,10 @@ class AccountType(models.Model):
 
     class Meta:
         ordering = ['owner', 'name']
-        
+
+    def get_absolute_url(self):
+        return reverse('money:accountTypeDetail', kwargs={'pk': self.pk})
+    
     def __str__(self):
         return "{}'s {}".format(self.owner, self.name)
 
