@@ -1,6 +1,7 @@
 from decimal import Decimal
 
 from django.db import models
+from django.db.models import Max, Min
 from django.urls import reverse
 from django.contrib.auth.models import User
 
@@ -28,6 +29,19 @@ class Currency(models.Model):
         return "{} [{}]".format(self.code, self.owner)
 
         
+    
+class Settings(models.Model):
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    default_currency = models.ForeignKey(Currency, on_delete=models.CASCADE, blank=True, null=True)
+
+    def __str__(self):
+        return "{}'s settings".format(self.owner)
+    
+    class Meta:
+        ordering = ['owner']
+        verbose_name_plural = "Settings"
+
+
 class AccountType(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=80)
@@ -51,7 +65,43 @@ class Account(models.Model):
 
     class Meta:
         ordering = ['owner', 'name']
+
+    def balance(self, currency=None, from_when=None, to_when=None):
+        if currency is None:
+            currency = Settings.objects.get(owner=self.owner).default_currency
+            
+        debit_transactions = self.debit_transactions.filter(owner=self.owner, currency=currency)
+        credit_transactions = self.credit_transactions.filter(owner=self.owner, currency=currency)
         
+        if from_when is None:
+            from_when = (debit_transactions | credit_transactions).aggregate(Min('when'))['when__min']
+            
+        if to_when is None:
+            to_when = (debit_transactions | credit_transactions).aggregate(Max('when'))['when__max']
+
+        total = Decimal('0.00')
+        
+        if debit_transactions:
+            debit_in_timeframe = debit_transactions.filter(when__gte=from_when, when__lte=to_when)
+        
+            for debit in debit_in_timeframe:
+                if self.account_type.equity_type:
+                    total -= debit.amount
+                else:
+                    total += debit.amount
+
+        if credit_transactions:
+            credit_in_timeframe = credit_transactions.filter(when__gte=from_when, when__lte=to_when)
+
+            for credit in credit_in_timeframe:
+                if self.account_type.equity_type:
+                    total += credit.amount
+                else:
+                    total -= credit.amount
+                
+        return total
+
+    
     def get_absolute_url(self):
         return reverse('money:accountDetail', kwargs={'pk': self.pk})
 
@@ -88,8 +138,8 @@ class Transaction(models.Model):
         return reverse('money:transactionDetail', kwargs={'pk': self.pk})
 
     def __str__(self):
-        display_str = "{}: {} {} {}/{} [{}]"
-        return display_str.format(self.when.strftime("%d/%m/%y"),
+        display_str = "{}: {} {} {} {}/{} [{}]"
+        return display_str.format(self.when.strftime("%d/%m/%y %H:%M:%S"),
                                   self.name,
                                   self.currency.symbol, self.amount,
                                   self.debit.abbreviation,
@@ -108,14 +158,3 @@ class Tag(models.Model):
     def __str__(self):
         return "{} [{}]".format(self.name, self.owner)
 
-    
-class Settings(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
-    default_currency = models.ForeignKey(Currency, on_delete=models.CASCADE, blank=True, null=True)
-
-    def __str__(self):
-        return "{}'s settings".format(self.owner)
-    
-    class Meta:
-        ordering = ['owner']
-        verbose_name_plural = "Settings"

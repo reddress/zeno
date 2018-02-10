@@ -15,8 +15,8 @@ class TransactionList(ListView):
 
 
 class TransactionDetail(DetailView):
-    def get_queryset(self):
-        return Transaction.objects.filter(owner=self.request.user, pk=self.kwargs['pk'])
+    def get_object(self):
+        return Transaction.objects.get(owner=self.request.user, pk=self.kwargs['pk'])
     
 
 class TransactionCreate(CreateView):
@@ -29,7 +29,7 @@ class TransactionCreate(CreateView):
         form.fields['debit'].queryset = Account.objects.filter(owner=self.request.user)
         form.fields['credit'].queryset = Account.objects.filter(owner=self.request.user)
         form.initial['currency'] = Settings.objects.get(owner=self.request.user).default_currency.id
-        form.initial['when'] = datetime.now().strftime("%Y-%m-%d %H:%M")
+        form.initial['when'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         return form
     
     def form_valid(self, form):

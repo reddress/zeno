@@ -20,8 +20,8 @@ class AccountTypeList(ListView):
 class AccountTypeDetail(DetailView):
     # model = AccountType  # this will allow getting other users' data
     
-    def get_queryset(self):
-        return AccountType.objects.filter(owner=self.request.user, pk=self.kwargs['pk'])
+    def get_object(self):
+        return AccountType.objects.get(owner=self.request.user, pk=self.kwargs['pk'])
     
 
 class AccountTypeCreate(CreateView):

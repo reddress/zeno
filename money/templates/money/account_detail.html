@@ -8,6 +8,17 @@
     <a href="{% url "money:accountList" %}">All Accounts</a>
 </p>
 
-{{ object }} <a href="{% url "money:accountUpdate" object.id %}">update</a> <a href="{% url "money:accountDelete" object.id %}">delete</a>
+{{ object }}
+{{ object.balance }}
+<a href="{% url "money:accountUpdate" object.id %}">update</a> <a href="{% url "money:accountDelete" object.id %}">delete</a>
+
+
+{% for transaction in transactions %}
+
+<p>
+    {{ transaction }}
+</p>
+
+{% endfor %}
 
 {% endblock %}

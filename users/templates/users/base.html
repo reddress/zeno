@@ -17,13 +17,14 @@
             {{ user }}'s
             {% endif %}
             
+            <a href="{% url "money:index" %}">Money</a>
+
             <a href="/">Zeno</a>
             <a href="/logout/">(logout)</a>
             
-            <a href="/admin">Admin</a>
+            <a href="{% url "admin:index" %}">Admin</a>
             <a href="{% url "bulletinboard:index" %}">Bulletin Board</a>
             <a href="{% url "todo:index" %}">Todo</a>
-            <a href="{% url "money:index" %}">Money</a>
         </div>
         
         {% block content %}{% endblock %}

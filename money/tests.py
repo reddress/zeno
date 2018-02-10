@@ -1,3 +1,8 @@
 from django.test import TestCase
 
-# Create your tests here.
+from .models import AccountType, Account, Transaction
+
+class TransactionTests(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        pass

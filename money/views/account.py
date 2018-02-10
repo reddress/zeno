@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from ..models import AccountType, Account
+from ..models import AccountType, Account, Transaction
 from ..forms import AccountForm
 
 # Account
@@ -13,8 +13,13 @@ class AccountList(ListView):
 
 
 class AccountDetail(DetailView):
-    def get_queryset(self):
-        return Account.objects.filter(owner=self.request.user, pk=self.kwargs['pk'])
+    def get_object(self):
+        return Account.objects.get(owner=self.request.user, pk=self.kwargs['pk'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['transactions'] = Transaction.objects.filter(debit=self.object) | Transaction.objects.filter(credit=self.object)
+        return context
     
 
 class AccountCreate(CreateView):
