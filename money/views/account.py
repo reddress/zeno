@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.utils import timezone
 
 from ..models import AccountType, Account, Transaction, Currency
 from ..forms import AccountForm
@@ -35,8 +36,8 @@ class AccountDetailTime(AccountDetail):
         to_m = self.kwargs['to_m']
         to_d = self.kwargs['to_d']
 
-        from_date = datetime(from_y, from_m, from_d)
-        to_date = datetime(to_y, to_m, to_d) + timedelta(days=1)
+        from_date = datetime(from_y, from_m, from_d).replace(tzinfo=timezone.get_default_timezone())
+        to_date = (datetime(to_y, to_m, to_d) + timedelta(days=1)).replace(tzinfo=timezone.get_default_timezone())
          
         transactions = (Transaction.objects.filter(debit=self.object, when__gte=from_date, when__lt=to_date) |
                         Transaction.objects.filter(credit=self.object, when__gte=from_date, when__lt=to_date))
@@ -68,8 +69,8 @@ class AccountDetailCurrencyTime(AccountDetail):
         to_m = self.kwargs['to_m']
         to_d = self.kwargs['to_d']
 
-        from_date = datetime(from_y, from_m, from_d)
-        to_date = datetime(to_y, to_m, to_d) + timedelta(days=1)
+        from_date = datetime(from_y, from_m, from_d).replace(tzinfo=timezone.get_default_timezone())
+        to_date = (datetime(to_y, to_m, to_d) + timedelta(days=1)).replace(tzinfo=timezone.get_default_timezone())
 
         currency_code = self.kwargs['currency_code']
         currency = Currency.objects.get(owner=self.request.user, code=currency_code)
@@ -89,7 +90,7 @@ class AccountDetailFrom(AccountDetail):
         from_m = self.kwargs['from_m']
         from_d = self.kwargs['from_d']
 
-        from_date = datetime(from_y, from_m, from_d)
+        from_date = datetime(from_y, from_m, from_d).replace(tzinfo=timezone.get_default_timezone())
 
         transactions = (Transaction.objects.filter(debit=self.object, when__gte=from_date) |
                         Transaction.objects.filter(credit=self.object, when__gte=from_date))
@@ -104,7 +105,7 @@ class AccountDetailCurrencyFrom(AccountDetail):
         from_m = self.kwargs['from_m']
         from_d = self.kwargs['from_d']
 
-        from_date = datetime(from_y, from_m, from_d)
+        from_date = datetime(from_y, from_m, from_d).replace(tzinfo=timezone.get_default_timezone())
 
         currency_code = self.kwargs['currency_code']
         currency = Currency.objects.get(owner=self.request.user, code=currency_code)

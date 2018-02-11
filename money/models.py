@@ -4,6 +4,7 @@ from django.db import models
 from django.db.models import Max, Min
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.utils.timezone import localtime
 
 # Currency
 # Settings
@@ -141,7 +142,7 @@ class Transaction(models.Model):
 
     def __str__(self):
         display_str = "{}: {} {} {} {}/{} [{}]"
-        return display_str.format(self.when.strftime("%d/%m/%y %H:%M:%S"),
+        return display_str.format(localtime(self.when).strftime("%d/%m/%y %H:%M:%S"),
                                   self.name,
                                   self.currency.symbol, self.amount,
                                   self.debit.abbreviation,

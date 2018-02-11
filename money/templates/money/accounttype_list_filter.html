@@ -30,6 +30,7 @@ To: {{ to_y }}/{{ to_m }}/{{ to_d }}
             <li>
                 <a href="{% url "money:accountDetail" account.id %}">
                     {{ account }}
+
                     {% if filter_type == "from_to" %}
                     {% account_filter account from_y from_m from_d to_y to_m to_d %}
                     
@@ -46,6 +47,21 @@ To: {{ to_y }}/{{ to_m }}/{{ to_d }}
                     {% account_filter account currency_code from_y from_m from_d %}
                     {% endif %}
                 </a>
+
+<!-- FOR TESTCASES
+TEST {{ account }}
+{% if filter_type == "from_to" %}
+{% account_filter account from_y from_m from_d to_y to_m to_d %}
+{% elif filter_type == "currency" %}
+{% account_filter account currency_code %}
+{% elif filter_type == "currency_from_to" %}
+{% account_filter account currency_code from_y from_m from_d to_y to_m to_d %}
+{% elif filter_type == "from" %}
+{% account_filter account from_y from_m from_d %}
+{% elif filter_type == "currency_from" %}
+{% account_filter account currency_code from_y from_m from_d %}
+{% endif %}
+-->
             </li>
             {% endfor %}
         </ul>
