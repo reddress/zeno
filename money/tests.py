@@ -3,12 +3,12 @@ from datetime import datetime
 
 from django.test import Client, TestCase
 from django.contrib.auth.models import User
-from django.utils import timezone
+from django.utils.timezone import make_aware
 
 from .models import Currency, AccountType, Account, Transaction, Settings
 
 def dt(year, month, day):
-    return datetime(year, month, day).replace(tzinfo=timezone.get_default_timezone())
+    return make_aware(datetime(year, month, day))
 
 class TransactionTests(TestCase):
     @classmethod
@@ -42,7 +42,7 @@ class TransactionTests(TestCase):
         self.client.login(username='u', password='u')
         
     def createTransaction(self, debit, credit, amount):
-        return Transaction.objects.create(owner=self.user, debit=debit, credit=credit, currency=self.usd, name="dummy", amount=Decimal(amount), when=datetime.now().replace(tzinfo=timezone.get_default_timezone()))
+        return Transaction.objects.create(owner=self.user, debit=debit, credit=credit, currency=self.usd, name="dummy", amount=Decimal(amount), when=make_aware(datetime.now()))
     
     def testSingleTransactionBalance(self):
         amount = "100.00"
