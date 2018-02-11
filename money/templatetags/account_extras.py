@@ -6,7 +6,7 @@ register = template.Library()
 
 
 @register.simple_tag
-def account_filter(account, *args):
+def account_balance_filter(account, *args):
     num_args = len(args)
     if num_args == 1:
         # currency

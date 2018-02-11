@@ -14,6 +14,7 @@
     {% for transaction in object_list %}
     <li>
         <a href="{% url "money:transactionDetail" transaction.id %}">{{ transaction }}</a>
+        <a href="{% url "money:transactionUpdate" transaction.id %}">edit</a> <a href="{% url "money:transactionDelete" transaction.id %}">delete</a>
     </li>
     {% endfor %}
 </ul>

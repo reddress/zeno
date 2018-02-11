@@ -12,10 +12,15 @@ class IndexView(TemplateView):
 
 class AccountTypeList(ListView):
     # model = AccountType  # this returns every AccountType
+    template_name = "money/accounttype_list_filter.html"
 
     def get_queryset(self):
         return AccountType.objects.filter(owner=self.request.user)
 
+    def get_context_data(self, **context_kwargs):
+        context = super().get_context_data(**context_kwargs)
+        context['filter_type'] = 'all'
+        return context
 
 class AccountTypeListTime(AccountTypeList):
     template_name = "money/accounttype_list_filter.html"

@@ -5,15 +5,17 @@
 
 <h1>Account Types Currency and Time Filter</h1>
 
-<p>
-    {{ filter_type }}
-</p>
+{% if currency_code %}
+Currency: {{ currency_code }}<br>
+{% endif %}
 
-Currency: {{ currency_code }}
-<br>
-From: {{ from_y }}/{{ from_m }}/{{ from_d }}
-<br>
+{% if from_y %}
+From: {{ from_y }}/{{ from_m }}/{{ from_d }}<br>
+{% endif %}
+
+{% if to_y %}
 To: {{ to_y }}/{{ to_m }}/{{ to_d }}
+{% endif %}
 
 <p>
     <a href="{% url "money:accountTypeCreate" %}">
@@ -25,41 +27,47 @@ To: {{ to_y }}/{{ to_m }}/{{ to_d }}
     {% for accountType in object_list %}
     <li>
         <a href="{% url "money:accountTypeDetail" accountType.id %}">{{ accountType }}</a>
+        <a href="{% url "money:accountTypeUpdate" accountType.id %}">edit</a> <a href="{% url "money:accountTypeDelete" accountType.id %}">delete</a>
         <ul>
             {% for account in accountType.account_set.all %}
             <li>
-                <a href="{% url "money:accountDetail" account.id %}">
-                    {{ account }}
+                {% if filter_type == "from_to" %}
+                <a href="{% url "money:accountDetailTime" account.id from_y from_m from_d to_y to_m to_d %}">{{ account }}</a>
+                {% account_balance_filter account from_y from_m from_d to_y to_m to_d %}
+                
+                {% elif filter_type == "currency" %}
+                <a href="{% url "money:accountDetailCurrency" account.id currency_code %}">{{ account }}</a>
+                {% account_balance_filter account currency_code %}
 
-                    {% if filter_type == "from_to" %}
-                    {% account_filter account from_y from_m from_d to_y to_m to_d %}
-                    
-                    {% elif filter_type == "currency" %}
-                    {% account_filter account currency_code %}
+                {% elif filter_type == "currency_from_to" %}
+                <a href="{% url "money:accountDetailCurrencyTime" account.id currency_code from_y from_m from_d to_y to_m to_d %}">{{ account }}</a>
+                {% account_balance_filter account currency_code from_y from_m from_d to_y to_m to_d %}
 
-                    {% elif filter_type == "currency_from_to" %}
-                    {% account_filter account currency_code from_y from_m from_d to_y to_m to_d %}
+                {% elif filter_type == "from" %}
+                <a href="{% url "money:accountDetailFrom" account.id from_y from_m from_d %}">{{ account }}</a>
+                {% account_balance_filter account from_y from_m from_d %}
 
-                    {% elif filter_type == "from" %}
-                    {% account_filter account from_y from_m from_d %}
+                {% elif filter_type == "currency_from" %}
+                <a href="{% url "money:accountDetailCurrencyFrom" account.id currency_code from_y from_m from_d %}">{{ account }}</a>
+                {% account_balance_filter account currency_code from_y from_m from_d %}
 
-                    {% elif filter_type == "currency_from" %}
-                    {% account_filter account currency_code from_y from_m from_d %}
-                    {% endif %}
-                </a>
+                {% elif filter_type == "all" %}
+                <a href="{% url "money:accountDetail" account.id %}">{{ account }}</a>
+                {{ account.balance }}
+                {% endif %}
 
 <!-- FOR TESTCASES
 TEST {{ account }}
 {% if filter_type == "from_to" %}
-{% account_filter account from_y from_m from_d to_y to_m to_d %}
+{% account_balance_filter account from_y from_m from_d to_y to_m to_d %}
 {% elif filter_type == "currency" %}
-{% account_filter account currency_code %}
+{% account_balance_filter account currency_code %}
 {% elif filter_type == "currency_from_to" %}
-{% account_filter account currency_code from_y from_m from_d to_y to_m to_d %}
+{% account_balance_filter account currency_code from_y from_m from_d to_y to_m to_d %}
 {% elif filter_type == "from" %}
-{% account_filter account from_y from_m from_d %}
+{% account_balance_filter account from_y from_m from_d %}
 {% elif filter_type == "currency_from" %}
-{% account_filter account currency_code from_y from_m from_d %}
+{% account_balance_filter account currency_code from_y from_m from_d %}
 {% endif %}
 -->
             </li>

@@ -25,7 +25,7 @@ urlpatterns = [
          login_required(account_type.AccountTypeCreate.as_view()),
          name="accountTypeCreate"),
 
-    path('accountType/update/<int:pk>/',
+    path('accountType/edit/<int:pk>/',
          login_required(account_type.AccountTypeUpdate.as_view()),
          name="accountTypeUpdate"),
 
@@ -48,7 +48,7 @@ urlpatterns = [
          login_required(account.AccountCreate.as_view()),
          name="accountCreate"),
 
-    path('account/update/<int:pk>/',
+    path('account/edit/<int:pk>/',
          login_required(account.AccountUpdate.as_view()),
          name="accountUpdate"),
 
@@ -71,7 +71,7 @@ urlpatterns = [
          login_required(transaction.TransactionCreate.as_view()),
          name="transactionCreate"),
 
-    path('transaction/update/<int:pk>/',
+    path('transaction/edit/<int:pk>/',
          login_required(transaction.TransactionUpdate.as_view()),
          name="transactionUpdate"),
 

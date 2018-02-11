@@ -8,6 +8,6 @@
     <a href="{% url "money:accountTypeList" %}">All Account Types</a>
 </p>
 
-{{ object }} <a href="{% url "money:accountTypeUpdate" object.id %}">update</a> <a href="{% url "money:accountTypeDelete" object.id %}">delete</a>
+{{ object }} <a href="{% url "money:accountTypeUpdate" object.id %}">edit</a> <a href="{% url "money:accountTypeDelete" object.id %}">delete</a>
 
 {% endblock %}

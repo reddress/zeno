@@ -9,8 +9,8 @@
 </p>
 
 {{ object }}
-{{ object.balance }}
-<a href="{% url "money:accountUpdate" object.id %}">update</a> <a href="{% url "money:accountDelete" object.id %}">delete</a>
+
+<a href="{% url "money:accountUpdate" object.id %}">edit</a> <a href="{% url "money:accountDelete" object.id %}">delete</a>
 
 
 {% for transaction in transactions %}

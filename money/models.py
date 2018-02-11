@@ -28,7 +28,8 @@ class Currency(models.Model):
 
     def __str__(self):
         # return "{}'s {}".format(self.owner, self.code)
-        return "{} [{}]".format(self.code, self.owner)
+        # return "{} [{}]".format(self.code, self.owner)
+        return self.code
 
         
 class Settings(models.Model):
@@ -36,7 +37,7 @@ class Settings(models.Model):
     default_currency = models.ForeignKey(Currency, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return "{}'s settings".format(self.owner)
+        return "{} [{}]".format(self.default_currency.code, self.owner)
     
     class Meta:
         ordering = ['owner']
@@ -52,10 +53,11 @@ class AccountType(models.Model):
         ordering = ['owner', 'name']
 
     def get_absolute_url(self):
-        return reverse('money:accountTypeDetail', kwargs={'pk': self.pk})
+        return reverse('money:accountTypeList')
     
     def __str__(self):
-        return "{} [{}]".format(self.name, self.owner)
+        # return "{} [{}]".format(self.name, self.owner)
+        return self.name
 
 
 class Account(models.Model):
@@ -102,14 +104,15 @@ class Account(models.Model):
                 else:
                     total -= credit.amount
                 
-        return total
+        return "{} {}".format(currency.code, total)
 
     
     def get_absolute_url(self):
-        return reverse('money:accountDetail', kwargs={'pk': self.pk})
+        return reverse('money:accountTypeList')
 
     def __str__(self):
-        return "{} [{}]".format(self.abbreviation, self.owner)
+        # return "{} [{}]".format(self.abbreviation, self.account_type.name)
+        return self.abbreviation
 
 
 class Budget(models.Model):
@@ -122,7 +125,7 @@ class Budget(models.Model):
         ordering = ['owner', 'account']
         
     def __str__(self):
-        return "{} budget: {} {} [{}]".format(self.account.abbreviation, self.currency.code, self.amount, self.owner)
+        return "{} budget: {} {}".format(self.account.abbreviation, self.currency.code, self.amount)
 
     
 class Transaction(models.Model):
@@ -138,16 +141,15 @@ class Transaction(models.Model):
         ordering = ['owner', '-when']
     
     def get_absolute_url(self):
-        return reverse('money:transactionDetail', kwargs={'pk': self.pk})
+        return reverse('money:transactionList')
 
     def __str__(self):
-        display_str = "{}: {} {} {} {}/{} [{}]"
+        display_str = "{}: {} {} {} {}/{}"
         return display_str.format(localtime(self.when).strftime("%d/%m/%y %H:%M:%S"),
                                   self.name,
                                   self.currency.symbol, self.amount,
                                   self.debit.abbreviation,
-                                  self.credit.abbreviation,
-                                  self.owner)
+                                  self.credit.abbreviation)
 
     
 class Tag(models.Model):

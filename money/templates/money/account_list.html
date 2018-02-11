@@ -13,7 +13,8 @@
 <ul>
     {% for account in object_list %}
     <li>
-        <a href="{% url "money:accountDetail" account.id %}">{{ account }}</a> {{ account.balance }}
+        <a href="{% url "money:accountDetail" account.id %}">{{ account }}</a>
+        <a href="{% url "money:accountUpdate" account.id %}">edit</a> <a href="{% url "money:accountDelete" account.id %}">delete</a>
     </li>
     {% endfor %}
 </ul>
