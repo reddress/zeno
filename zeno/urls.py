@@ -21,7 +21,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('', include('catalogo.urls')),
-    path('zeno/', include('users.urls')),
     path('sistema/', include('sistema.urls')),
     path('registros/', include('registros.urls')),
     path('movimento/', include('movimento.urls')),
@@ -31,5 +30,5 @@ urlpatterns = [
     path('bulletinboard/', include('bulletinboard.urls')),
     path('todo/', include('todo.urls')),
     path('money/', include('money.urls')),
-    path('zenousers/', include('users.urls')),
+    path('zenousers/', include('zenousers.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

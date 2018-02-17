@@ -37,7 +37,7 @@ class Settings(models.Model):
     default_currency = models.ForeignKey(Currency, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
-        return "{} [{}]".format(self.default_currency.code, self.owner)
+        return "{} [{}]".format(self.default_currency.code, self.owner.username)
     
     class Meta:
         ordering = ['owner']

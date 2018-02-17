@@ -3,7 +3,7 @@ from django.contrib.auth.views import login, logout
 
 from . import views
 
-app_name = 'users'
+app_name = 'zenousers'
 
 urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),

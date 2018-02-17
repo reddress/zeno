@@ -82,9 +82,9 @@
                 <div class="pure-menu pure-menu-horizontal">
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                            <a href="#" id="categoriesLink" class="pure-menu-link">View</a>
+                            <a href="#" id="accountTypesLink" class="pure-menu-link">View</a>
                             <ul class="pure-menu-children">
-                                <li class="pure-menu-item"><a href="{% url "money:accountTypeList" %}" class="pure-menu-link">Categories</a></li>
+                                <li class="pure-menu-item"><a href="{% url "money:accountTypeList" %}" class="pure-menu-link">Account Types</a></li>
                                 <li class="pure-menu-item"><a href="{% url "money:accountList" %}" class="pure-menu-link">Accounts</a></li>
                                 <li class="pure-menu-item"><a href="{% url "money:transactionList" %}" class="pure-menu-link">Transactions</a></li>
                             </ul>
@@ -92,9 +92,9 @@
                     </ul>
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                            <a href="#" id="categoriesLink" class="pure-menu-link">New</a>
+                            <a href="#" id="accountTypesLink" class="pure-menu-link">New</a>
                             <ul class="pure-menu-children">
-                                <li class="pure-menu-item"><a href="{% url "money:accountTypeCreate" %}" class="pure-menu-link">Category</a></li>
+                                <li class="pure-menu-item"><a href="{% url "money:accountTypeCreate" %}" class="pure-menu-link">Account Type</a></li>
                                 <li class="pure-menu-item"><a href="{% url "money:accountCreate" %}" class="pure-menu-link">Account</a></li>
                                 <li class="pure-menu-item"><a href="{% url "money:transactionCreate" %}" class="pure-menu-link">Transaction</a></li>
                             </ul>
@@ -102,9 +102,9 @@
                     </ul>
                     <ul class="pure-menu-list">
                         {% if user.is_authenticated %}
-                        <li class="pure-menu-item pure-menu-selected"><a href="{% url "users:logout" %}" class="pure-menu-link">Log out</a></li>
+                        <li class="pure-menu-item pure-menu-selected"><a href="{% url "zenousers:logout" %}" class="pure-menu-link">Log out</a></li>
                         {% else %}
-                        <li class="pure-menu-item pure-menu-selected"><a href="{% url "users:login" %}?next={% url "money:index" %}" class="pure-menu-link">Log in</a></li>
+                        <li class="pure-menu-item pure-menu-selected"><a href="{% url "zenousers:login" %}?next={% url "money:index" %}" class="pure-menu-link">Log in</a></li>
                         {% endif %}
                     </ul>
                 </div>
