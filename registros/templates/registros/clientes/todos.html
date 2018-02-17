@@ -1,0 +1,36 @@
+{% extends 'sistema/bootstrap/base.html' %}
+
+{% block title %}Clientes - Registros{% endblock %}
+{% block headerTitle %}Registros - Clientes{% endblock %}
+
+{% block mainTitle %}Clientes{% endblock %}
+
+{% block actionTop %}
+<a href="{% url "registros:clientesNovo" %}" class="btn btn-primary">Cliente Novo</a>
+{% endblock %}
+
+
+{% block main %}
+
+{% with current_page=clientes %}
+{% include "registros/paginator.html" %}
+{% endwith %}
+
+{% for cliente in clientes %}
+<div class="card card-med inline-block">
+    <div class="card-body">
+        <a href="{% url "registros:clientesVer" cliente_id=cliente.id %}">
+            <h5 class="card-title">{{ cliente.nome }} ({{ cliente.id }})</h5>
+        </a>
+           
+        <p class="card-text">
+            {{ cliente.rua }}<br>
+            {{ cliente.cidade }}, {{ cliente.estado }}
+        </p>
+    </div>
+</div>
+{% endfor %}
+
+<div class="clear-both"></div>
+
+{% endblock %}

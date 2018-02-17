@@ -1,0 +1,17 @@
+{% extends 'sistema/bootstrap/base.html' %}
+
+{% block title %}Transações - Movimento{% endblock %}
+{% block headerTitle %}Movimento - Transações{% endblock %}
+
+{% block mainTitle %}Transações{% endblock %}
+
+{% block actionTop %}
+<a href="{% url "movimento:transacoesNovo" %}" class="btn btn-primary">Transação Nova</a>
+{% endblock %}
+
+
+{% block main %}
+
+{% include "movimento/transacoes/tabelas/transacoes.html" %}
+
+{% endblock %}

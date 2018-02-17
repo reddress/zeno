@@ -1,0 +1,22 @@
+{% extends 'catalogo/base.html' %}
+
+{% block title %}Catálogo{% endblock %}
+
+{% block mainTitle %}Catálogo{% endblock %}
+
+{% block main %}
+
+<button class="index_menu" onclick="openMenu();" data-inline="true">Nossos Produtos</button>
+<br>
+
+<a href="{% url 'users:index' %}" data-ajax="false">
+    <button class="index_menu" onclick="openMenu();" data-inline="true">Zeno Users</button>
+</a>
+
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+<br><br>
+
+{% endblock %}

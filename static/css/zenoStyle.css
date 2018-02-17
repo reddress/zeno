@@ -1,0 +1,13 @@
+a {
+    text-decoration: none;
+}
+
+#zenoHeader {
+    font-family: 'Yesteryear';
+    font-size: 1.6em;
+}
+
+#zenoHeader a {
+    padding-right: 1.2em;
+    text-decoration: none;
+}

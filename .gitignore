@@ -11,10 +11,10 @@ __pycache__/
 db.sqlite3
 db.sqlite3*
 
-media/
+/media/
 
 # settings
-zeno/settings.py
+/zeno/settings.py
 
 # shortcuts
 runserver

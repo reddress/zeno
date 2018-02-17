@@ -1,13 +1,65 @@
-a {
-    text-decoration: none;
+.mainContent {
+    margin-left: 1em;
 }
 
-#zenoHeader {
-    font-family: 'Yesteryear';
-    font-size: 1.6em;
+footer {
+    margin-left: 1em;
 }
 
-#zenoHeader a {
-    padding-right: 1.2em;
-    text-decoration: none;
+.foto-small {
+    width: 18rem;
 }
+
+.card-small {
+    width: 18rem;
+}
+
+.card-med {
+    width: 24rem;
+}
+
+.card-fixed-height-small {
+    height: 12em;
+}
+
+.card-fixed-height-med {
+    height: 22em;
+}
+
+ul.ul-columns {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+ul.ul-columns li {
+    float: left;
+    list-style: none;
+    padding-right: 0.8em;
+}
+
+ul.ul-columns input[type=text] {
+    width: 5em;
+}
+
+ul.ul-columns input[type=number] {
+    width: 5em;
+    text-align: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.clear-both {
+    clear: both;
+}
+
+.inline-block {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.td-align-right {
+    text-align: right;
+}
+                    

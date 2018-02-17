@@ -1,0 +1,24 @@
+{% extends 'sistema/bootstrap/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block mainTitle %}Home{% endblock %}
+
+{% block actionTop %}
+<a href="{% url "admin:index" %}" class="btn btn-secondary">Admin</a>
+
+<a href="{% url "registros:clientes" %}" class="btn btn-primary">Clientes</a>
+
+<a href="{% url "registros:produtos" %}" class="btn btn-primary">Produtos</a>
+
+<a href="{% url "movimento:transacoes" %}" class="btn btn-primary">Transações</a>
+
+<a href="{% url "catalogo:index" %}" class="btn btn-primary">Catálogo</a>
+
+{% endblock %}
+
+{% block main %}
+
+Bem-vindo ao Sistema, {{confs.empresa_ativa.nome}}
+
+{% endblock %}

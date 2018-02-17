@@ -20,11 +20,15 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('', include('catalogo.urls')),
+    path('zeno/', include('users.urls')),
+    path('sistema/', include('sistema.urls')),
+    path('registros/', include('registros.urls')),
+    path('movimento/', include('movimento.urls')),
     path('admin/', admin.site.urls),
     path('pollsbasic/', include('pollsbasic.urls')),
     path('polls/', include('polls.urls')),
     path('bulletinboard/', include('bulletinboard.urls')),
     path('todo/', include('todo.urls')),
     path('money/', include('money.urls')),
-    path('', include('users.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

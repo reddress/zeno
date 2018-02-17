@@ -1,0 +1,90 @@
+{% extends 'sistema/bootstrap/base.html' %}
+
+{% block title %}Clientes - Registros{% endblock %}
+{% block headerTitle %}Registros - Clientes{% endblock %}
+
+{% block mainTitle %}
+{{ cliente.nome }}
+
+<a href="{% url "movimento:transacoesVendaCliente" cliente_id=cliente.id %}" class="btn btn-primary">Venda Nova</a>
+
+<a href="{% url "registros:clientesEditar" cliente_id=cliente.id %}" class="btn btn-secondary">Editar</a>
+
+<a href="{% url "registros:clientesConfirmarApagar" cliente_id=cliente.id %}" class="btn btn-danger">Apagar</a>
+{% endblock %}
+
+{% block actionTop %}
+<a href="{% url "registros:clientesNovo" %}" class="btn btn-primary">Cliente Novo</a>
+<a href="{% url "registros:clientes" %}" class="btn btn-primary">Todos os Clientes</a>
+
+{% endblock %}
+
+
+{% block main %}
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active" id="ficha-tab" data-toggle="tab" href="#ficha" role="tab" aria-controls="ficha" aria-selected="true">Ficha</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="vendas-tab" data-toggle="tab" href="#vendas" role="tab" aria-controls="vendas" aria-selected="false">Vendas</a>
+    </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="ficha" role="tabpanel" aria-labelledby="ficha-tab">
+        <p>
+            <b>Vendedor:</b>
+            {{ cliente.vendedor.user.username }}
+        </p>
+
+        <p>
+            <a href="https://www.google.com/maps/place/{{ gmaps_place }}" target="_blank">
+                {{ cliente.rua }}, {{ cliente.cidade }}, {{ cliente.estado }}
+                <br>
+                CEP {{ cliente.cep }}
+            </a>
+        </p>
+
+        <p>
+            <b>Contato:</b>
+            {{ cliente.contato }}<br>
+            {{ cliente.telefone }}<br>
+            {{ cliente.email }}
+        </p>
+
+        <p>
+            <b>Cadastros:</b>
+            <table class="table-sm">
+                <tr>
+                    <td>CNPJ</td>
+                    <td>{{ cliente.cadastro_nacional }}</td>
+                </tr>
+                <tr>
+                    <td>I.E.</td>
+                    <td>{{ cliente.cadastro_estadual }}</td>
+                </tr>
+            </table>
+        </p>
+    </div>
+    <div class="tab-pane fade" id="vendas" role="tabpanel" aria-labelledby="vendas-tab">
+        Totais de vendas:
+        <table class="table-sm">
+            <tbody>
+                {% for row in totais %}
+                <tr>
+                    <td>{{ row.codigo }}</td>
+                    <td class="td-align-right">{{ row.valor }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        {% with transacoes=vendas %}
+        {% include "movimento/transacoes/tabelas/transacoes.html" %}
+        {% endwith %}
+
+    </div>
+</div>
+
+{% endblock %}

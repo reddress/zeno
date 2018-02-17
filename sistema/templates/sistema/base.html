@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <body>
+        <p>
+            <a href="{% url "sistema:index" %}">Home</a>
+        </p>
+
+        <p>
+            <a href="{% url "admin:index" %}">Admin</a>
+        </p>
+        Base Template, no CSS Framework
+        
+        {% block main %}{% endblock %}
+
+        <!-- Footer -->
+
+    </body>
+</html>
