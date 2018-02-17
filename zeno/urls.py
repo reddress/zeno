@@ -31,4 +31,5 @@ urlpatterns = [
     path('bulletinboard/', include('bulletinboard.urls')),
     path('todo/', include('todo.urls')),
     path('money/', include('money.urls')),
+    path('zenousers/', include('users.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

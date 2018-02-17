@@ -2,30 +2,15 @@
 
 {% block moneyContent %}
 
-<h1>Money</h1>
+<div class="pure-g">
+    <div class="pure-u-1 main-content">
+        <h1>ZMoney</h1>
 
-<p>
-    <a href="{% url "money:accountTypeCreate" %}">New Account Type</a>
-</p>
+        {% if not user.is_authenticated %}
+        Please log in.
+        {% endif %}
 
-<p>
-    <a href="{% url "money:accountTypeList" %}">Account Types</a>
-</p>
-
-<p>
-    <a href="{% url "money:accountCreate" %}">New Account</a>
-</p>
-
-<p>
-    <a href="{% url "money:accountList" %}">Accounts</a>
-</p>
-
-<p>
-    <a href="{% url "money:transactionCreate" %}">New Transaction</a>
-</p>
-
-<p>
-    <a href="{% url "money:transactionList" %}">Transactions</a>
-</p>
-
-{% endblock %}
+        {% endblock %}
+    </div>
+</div>
+        
