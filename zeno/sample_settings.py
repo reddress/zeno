@@ -31,9 +31,13 @@ ALLOWED_HOSTS = ['testserver', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'sistema.apps.SistemaConfig',
+    'catalogo.apps.CatalogoConfig',
+    'movimento.apps.MovimentoConfig',
+    'registros.apps.RegistrosConfig',
     'money.apps.MoneyConfig',
     'todo.apps.TodoConfig',
-    'users.apps.UsersConfig',
+    'zenousers.apps.ZenousersConfig',
     'bulletinboard.apps.BulletinboardConfig',
     'polls.apps.PollsConfig',
     'pollsbasic.apps.PollsbasicConfig',
@@ -130,6 +134,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-LOGIN_URL = '/login/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_URL = '/zenousers/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
