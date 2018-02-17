@@ -1,4 +1,6 @@
 [OK] App name in urls.py: tutorial03
 [OK] Static location for css and fonts
 [NO] implement /accounts/profile and remove next variable from login path
-[  ] Use Pure CSS for Money
+[OK] Use Pure CSS for Money
+[  ] Test Search
+[  ] Use JS to build URL for currency, date filters

@@ -1,0 +1,25 @@
+.ctr {
+    text-align: center;
+}
+
+.title {
+    background: #9CF;
+    padding: 0 1em;
+}
+
+.flex-align-middle {
+    display: flex;
+    align-items: center;
+}
+
+.align-right {
+    justify-content: flex-end;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.header-currency {
+    background: #FFF;
+}
