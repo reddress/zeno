@@ -128,6 +128,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # http://heitorchang.github.io/djangonotes/2017_03_30_index_custom_font.html
 STATICFILES_DIRS = [
