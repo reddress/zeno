@@ -80,6 +80,9 @@
         <div class="pure-g">
             <div class="pure-u-1">
                 <div class="pure-menu pure-menu-horizontal">
+
+                    {% if user.is_authenticated %}
+
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                             <a href="#" class="pure-menu-link black">Browse</a>
@@ -101,13 +104,17 @@
                         </li>
                     </ul>
                     <ul class="pure-menu-list">
-                        {% if user.is_authenticated %}
                         <li class="pure-menu-item"><a href="{% url "admin:index" %}" class="pure-menu-link black">Admin</a></li>
                         <li class="pure-menu-item"><a href="{% url "zenousers:logout" %}" class="pure-menu-link black">Log out</a></li>
-                        {% else %}
-                        <li class="pure-menu-item"><a href="{% url "zenousers:login" %}?next={% url "money:index" %}" class="pure-menu-link black">Log in</a></li>
-                        {% endif %}
                     </ul>
+
+                    {% else %}
+
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item"><a href="{% url "zenousers:login" %}?next={% url "money:index" %}" class="pure-menu-link black">Log in</a></li>
+                    </ul>
+
+                    {% endif %}
                 </div>
             </div>
         </div>

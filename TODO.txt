@@ -2,5 +2,5 @@
 [OK] Static location for css and fonts
 [NO] implement /accounts/profile and remove next variable from login path
 [OK] Use Pure CSS for Money
-[  ] Test Search
+[  ] Implement Search
 [  ] Use JS to build URL for currency, date filters

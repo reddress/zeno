@@ -3,14 +3,13 @@
 {% block moneyContent %}
 
 <div class="pure-g">
-    <div class="pure-u-1 main-content">
+    <div class="pure-u-1">
         <h1>ZMoney</h1>
 
         {% if not user.is_authenticated %}
-        Please log in.
+        Please <a href="{% url "zenousers:login" %}?next={% url "money:index" %}">log in.</a>
         {% endif %}
-
-        {% endblock %}
     </div>
 </div>
-        
+
+{% endblock %}
