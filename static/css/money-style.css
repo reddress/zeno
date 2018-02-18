@@ -25,5 +25,25 @@
 }
 
 .main-content {
-    padding: 0 0.4em;
+    padding: 0 1em;
+}
+
+.red {
+    color: red;
+}
+
+.black {
+    color: black;
+}
+
+.django-form-table td {
+    text-align: left;
+}
+
+.django-form-table th {
+    text-align: left;
+}
+
+h1 {
+    font-size: 1.5em;
 }

@@ -82,7 +82,7 @@
                 <div class="pure-menu pure-menu-horizontal">
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                            <a href="#" id="accountTypesLink" class="pure-menu-link">View</a>
+                            <a href="#" class="pure-menu-link black">Browse</a>
                             <ul class="pure-menu-children">
                                 <li class="pure-menu-item"><a href="{% url "money:accountTypeList" %}" class="pure-menu-link">Account Types</a></li>
                                 <li class="pure-menu-item"><a href="{% url "money:accountList" %}" class="pure-menu-link">Accounts</a></li>
@@ -92,7 +92,7 @@
                     </ul>
                     <ul class="pure-menu-list">
                         <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
-                            <a href="#" id="accountTypesLink" class="pure-menu-link">New</a>
+                            <a href="#" class="pure-menu-link black">New</a>
                             <ul class="pure-menu-children">
                                 <li class="pure-menu-item"><a href="{% url "money:accountTypeCreate" %}" class="pure-menu-link">Account Type</a></li>
                                 <li class="pure-menu-item"><a href="{% url "money:accountCreate" %}" class="pure-menu-link">Account</a></li>
@@ -102,9 +102,10 @@
                     </ul>
                     <ul class="pure-menu-list">
                         {% if user.is_authenticated %}
-                        <li class="pure-menu-item pure-menu-selected"><a href="{% url "zenousers:logout" %}" class="pure-menu-link">Log out</a></li>
+                        <li class="pure-menu-item"><a href="{% url "admin:index" %}" class="pure-menu-link black">Admin</a></li>
+                        <li class="pure-menu-item"><a href="{% url "zenousers:logout" %}" class="pure-menu-link black">Log out</a></li>
                         {% else %}
-                        <li class="pure-menu-item pure-menu-selected"><a href="{% url "zenousers:login" %}?next={% url "money:index" %}" class="pure-menu-link">Log in</a></li>
+                        <li class="pure-menu-item"><a href="{% url "zenousers:login" %}?next={% url "money:index" %}" class="pure-menu-link black">Log in</a></li>
                         {% endif %}
                     </ul>
                 </div>
@@ -112,7 +113,7 @@
         </div>
 
         <div class="pure-g">
-            <div class="pure-u-1">
+            <div class="pure-u-1 main-content">
                 {% block moneyContent %}{% endblock %}
             </div>
         </div>
