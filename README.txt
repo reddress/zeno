@@ -15,7 +15,7 @@ Installing Django
 
 ~$ virtualenv -p /usr/bin/python3 django2.0
 ~$ source django2.0/bin/activate
-~$ pip install --pre django
+~$ pip install Django
 ~$ django-admin startproject zeno
 
 zeno$ python manage.py migrate
@@ -31,7 +31,7 @@ zeno$ python manage.py runserver
 $ virtualenv -v -p /c/Users/Heitor/AppData/Local/
     Programs/Python/Python35-32/python.exe django2.0
 $ source django2.0/Scripts/activate
-$ pip install --pre django
+$ pip install Django
 
 
 ### Create a .gitignore
