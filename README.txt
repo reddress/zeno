@@ -5,15 +5,9 @@ A collection of productivity and personal organization apps
 Set TIME_ZONE to 'America/Sao_Paulo'
 Set LOGIN_URL, LOGIN_REDIRECT_URL, and LOGOUT_REDIRECT_URL
 
-[OK] pollsbasic: Tutorial up to "basic math/calculator" comment
-[OK] polls: Tutorial using class-based views, starting from Part 4
-[OK] bulletinboard: users can post, anyone can read
-[  ] todo: Tasks
-[  ] diary: Mytags/tagdiary
-[  ] money: Alexie Beans clone
-
-Pontual-related
-- Aguardando
+- Catalogo
+- Sistema
+- Benny (All Cents)
 
 ### Ubuntu setup
 
@@ -57,3 +51,16 @@ zeno/settings.py
 
 # 'touch runserver' to tab-complete
 runserver
+
+### Setting up All Cents' demo data (Benny)
+
+python manage.py createsuperuser (username 'demo',
+                                  then use any strong password)
+
+python manage.py shell
+
+from django.contrib.auth.models import User
+
+u = User.objects.get(username='demo')
+u.set_password('demo')
+u.save()

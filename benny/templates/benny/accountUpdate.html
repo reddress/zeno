@@ -1,0 +1,12 @@
+{% extends "benny/base.html" %}
+{% block title %}Account - Update{% endblock %}
+
+{% block content %}
+<h1>Edit account</h1>
+
+<form action="{% url 'benny:accountSaveUpdate' id %}" method="POST">
+    {% csrf_token %}
+    {% include 'benny/modelForm.html' %}
+</form>
+
+{% endblock %}

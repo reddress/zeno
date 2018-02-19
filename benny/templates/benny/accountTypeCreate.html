@@ -1,0 +1,11 @@
+{% extends "benny/base.html" %}
+{% block title %}Account Type - Create{% endblock %}
+
+{% block content %}
+<h1>New account type</h1>
+
+<form action="{% url 'benny:accountTypeSaveCreate' %}" method="POST">
+    {% csrf_token %}
+    {% include 'benny/modelForm.html' %}
+</form>
+{% endblock %}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['testserver', '127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'benny.apps.BennyConfig',
     'sistema.apps.SistemaConfig',
     'catalogo.apps.CatalogoConfig',
     'movimento.apps.MovimentoConfig',
@@ -44,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',

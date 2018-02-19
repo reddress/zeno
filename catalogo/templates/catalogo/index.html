@@ -6,7 +6,7 @@
 
 {% block main %}
 
-<button class="index_menu" onclick="openMenu();" data-inline="true">Nossos Produtos</button>
+<button class="index_menu" onclick="openMenu();" data-inline="true">Catálogo</button>
 
 <br>
 
@@ -16,8 +16,16 @@
 
 <br>
 
+<!--
 <a href="{% url 'money:index' %}" data-ajax="false">
     <button class="index_menu" data-inline="true">ZMoney</button>
+</a>
+
+<br>
+-->
+
+<a href="{% url 'benny:index' %}" data-ajax="false">
+    <button class="index_menu" data-inline="true">All Cents</button>
 </a>
 
 <br>

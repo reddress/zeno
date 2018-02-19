@@ -1,0 +1,14 @@
+{% extends "benny/base.html" %}
+{% block title %}Account Type - Read{% endblock %}
+
+{% block content %}
+
+{{ accountType.name }} <a href="{% url 'benny:accountTypeUpdate' accountType.id %}">(edit)</a> <a href="{% url 'benny:accountTypeConfirmDelete' accountType.id %}">(delete)</a>
+
+{% for account in accountSummaries %}
+<p>
+    {% include 'benny/accountSummaryLine.html' %}
+</p>
+{% endfor %}
+
+{% endblock %}

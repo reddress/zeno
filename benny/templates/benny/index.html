@@ -1,0 +1,47 @@
+{% extends 'benny/base.html' %}
+{% load humanize %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<!-- <div class="accountTypeRow"> -->
+
+    {% for accountType in accountTypes %}
+    <div class="accountTypeBlock">
+        <!-- <a href="{% url 'benny:accountTypeRead' accountType.id %}"><span class="accountTypeName">{{ accountType.name }}</span></a> -->
+        <span class="accountTypeName">{{ accountType.name }}</span>
+        &nbsp;
+        <a href="{% url 'benny:accountTypeUpdate' accountType.id %}" class="small">edit</a> |
+        <a href="{% url 'benny:accountTypeConfirmDelete' accountType.id %}" class="small">delete</a>
+
+        <!--
+        <p>
+            <a href="{% url 'benny:accountCreate' %}?accountType={{ accountType.id }}" class="small newItem"> + create new account</a>
+        </p>
+        -->
+
+        <table class="accountSummariesTable">
+            {% for account in accountType.accountSummaries %}
+            {% include 'benny/accountSummaryLine.html' %}
+            {% endfor %}
+            <!-- account type total -->
+            <tr>
+                <td class="total">
+                    Total
+                </td>
+                <td class="amount total">
+                    {{ accountType.total|intcomma }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    {% endfor %}
+
+    <!--
+    <div class="accountTypeBlock">
+        <a href="{% url 'benny:accountTypeCreate' %}" class="small newItem"> + create new account type</a>
+    </div>
+    -->
+
+    <!-- </div> -->
+{% endblock %}
