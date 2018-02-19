@@ -2,4 +2,4 @@
 [OK] Static location for css and fonts
 [NO] implement /accounts/profile and remove next variable from login path
 [OK] Use Pure CSS for Money
-[  ] Implement Search in Benny
+[OK] Implement Search in Benny

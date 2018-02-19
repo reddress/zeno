@@ -4,11 +4,13 @@
 
 {% block content %}
 <div class="accountTypeBlock">
+    {% if account %}
     <span class="accountName">{{ account.name }}</span>
     &nbsp;
     <a href="{% url 'benny:accountUpdate' account.id %}" class="small">edit</a> | <a href="{% url 'benny:accountConfirmDelete' account.id %}" class="small">delete</a>
-
     <br><br>
+    {% endif %}
+    
     <table class="transactionSummariesTable">
         <tr>
             <th>&nbsp;</th>

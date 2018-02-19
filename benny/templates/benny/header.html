@@ -50,12 +50,12 @@
             <input type="submit" value="change">            
         </form> <!-- changeDates -->
 
-        <form action="{% url 'benny:search' %}" method="POST" class="navbar-form navbar-left small">
-            {% csrf_token %}
-            
+        <form action="{% url 'benny:search' %}" method="GET" class="navbar-form navbar-left small">
             <span class="glyphicon glyphicon-search gi-default-size"></span>
             <input type="text" name="words" size="15">
             <input type="submit" value="search">
         </form>
     </div>
 </nav>
+
+

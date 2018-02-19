@@ -328,4 +328,10 @@ def presetDate(request):
     
 def search(request):
     # render to account view
-    pass
+    query = request.GET['words']
+    
+    transactions = Transaction.objects.filter(
+        description__icontains=query).order_by('-date')
+
+    return render(request, 'benny/accountRead.html',
+                  {'transactions': transactions})
