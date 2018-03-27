@@ -1,0 +1,195 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('Lato-Regular.ttf') format('truetype');
+    font-weight: medium;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('Lato-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+body {
+    font-family: 'Lato';
+    font-size: 16px;
+    /* padding-top: 55px; */
+}
+
+#content {
+    padding-left: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: #364;
+}
+
+a:visited {
+    color: #364;
+}
+
+a:hover {
+    color: #6a6;
+}
+
+a:active {
+    color: #6a6;
+}
+
+a:link.newItem {
+    color: #33b;
+}
+
+a:visited.newItem {
+    color: #33b;
+}
+
+a:hover.newItem {
+    color: #99c;
+}
+
+a:active.newItem {
+    color: #99c;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+.accountTypeRow {
+    display: table;
+}
+
+.accountTypeBlock {
+    /* display: inline-block; */
+    display: table-cell;
+    padding: 5px 20px 5px 5px;
+    margin-bottom: 50px;
+    white-space: nowrap;
+    vertical-align: top;
+    border-left: 1px solid #9c9;
+}
+
+.accountTypeName {
+    font-weight: bold;
+}
+
+.accountName {
+    font-weight: bold;
+}
+
+.indexAccountType {
+    float: left;
+    padding: 25px;
+}
+
+.modelTable {
+    border-left: 1px solid #9c9;
+    padding: 15px;
+}
+
+.modelTable th {
+    /* border: 1px solid red; */
+    text-align: left;
+    padding: 3px 10px;
+}
+
+.modelTable tr td {
+    /* border: 1px solid green; */
+    padding: 3px 10px;
+}
+
+.accountSummariesTable {
+    border-collapse: collapse;
+    /* border: 1px solid #99c; */
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.accountSummariesTable tr td {
+    padding: 3px 10px 3px 0;
+    /* border: 1px solid #99c; */
+}
+
+.accountSummariesTable tr td.amount {
+    text-align: right;
+}
+
+.accountSummariesTable tr td.budget {
+    font-size: 14px;
+    text-align: right;
+}
+
+.accountSummariesTable tr td.label {
+    font-size: 14px;
+    text-align: right;
+}
+
+.accountSummariesTable tr td.total {
+    font-weight: bold;
+}
+
+.small {
+    font-size: 14px;
+}
+
+.large {
+    font-size: 18px;
+}
+
+.formLine {
+    display: inline;
+}
+
+input[type=text], input[type=number], input[type=password] {
+    font-family: Lato;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #6a6;
+    padding: 3px;
+}
+
+input[type=submit] {
+    font-family: Lato;
+}
+
+select, option {
+    font-family: Lato;
+}
+
+.newItem {
+    padding-left: 8px;
+}
+
+#spacer {
+    height: 100px;
+}
+
+#loginContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#loginForm {
+    width: 40%;
+    text-align: center;
+}
+
+#loginTable {
+    display: inline-block;
+}
+
+#loginTable tr td {
+    padding: 10px;
+}
+
+.brand {
+    text-align: center;
+    font-weight: bold;
+}
