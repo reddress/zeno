@@ -6,7 +6,7 @@ from django.core.files import File
 from django.db import transaction
 
 from registros.models import Produto
-from setup.produtos import PRODUTO_LIST
+from sistema.setup.produtos import PRODUTO_LIST
 
 # Run inside python manage.py shell
 
@@ -14,10 +14,10 @@ from setup.produtos import PRODUTO_LIST
 # add_produtos()
 
 # FOTO_DIR = "C:/users/heitor/sisfotos/"
-FOTO_DIR = "/home/heitor/tmp/sisfotos/"
+FOTO_DIR = "/home/protected/sisfotos/"
 
 # PRODUTOS_NOME_CSV = "C:/users/heitor/Desktop/emacs-24.3/bin/sistema/setup/produtos_nome.csv"
-PRODUTOS_NOME_CSV = "/home/heitor/sistema/setup/produtos_nome.csv"
+PRODUTOS_NOME_CSV = "/home/protected/zeno/sistema/setup/produtos_nome.csv"
 
 CAIXA_QTDE = [48, 50, 100, 24, 200]
 
@@ -31,7 +31,8 @@ def add_produto(codigo, nome, por_caixa):
 @transaction.atomic
 def add_produtos():
     produto_nome = {}
-    with open(PRODUTOS_NOME_CSV, newline='', encoding='latin-1') as f:
+    # with open(PRODUTOS_NOME_CSV, newline='', encoding='latin-1') as f:
+    with open(PRODUTOS_NOME_CSV, newline='', encoding='utf-8') as f:
         reader = csv.reader(f, delimiter=",")
         for row in reader:
             print(row[0], row[1])

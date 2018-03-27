@@ -22,3 +22,4 @@ makemigrations
 migrate
 test
 
+/zeno/sistema/setup/clientes*

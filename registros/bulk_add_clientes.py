@@ -11,8 +11,8 @@ from registros.models import Empresa
 # from registros.bulk_add_clientes import add_clientes
 # add_clientes()
 
-# CLIENTES_CSV = "/home/heitor/sistema/setup/clientes.csv"
-CLIENTES_CSV = "C:/Users/heitor/Desktop/emacs-24.3/bin/sistema/setup/clientes.csv"
+CLIENTES_CSV = "/home/protected/zeno/sistema/setup/clientes.csv"
+# CLIENTES_CSV = "C:/Users/heitor/Desktop/emacs-24.3/bin/sistema/setup/clientes.csv"
 
 def randomCNPJ():
     a = randint(2, 29)
@@ -30,7 +30,8 @@ def randomIE():
 
 @transaction.atomic
 def add_clientes():
-    with open(CLIENTES_CSV, newline='', encoding='latin-1') as f:
+    # with open(CLIENTES_CSV, newline='', encoding='latin-1') as f:
+    with open(CLIENTES_CSV, newline='', encoding='utf-8') as f:
         reader = csv.reader(f, delimiter=",")
         for row in reader:
             Empresa.objects.create(nome=row[0],
