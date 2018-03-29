@@ -1,3 +1,5 @@
+{% load currency_filters %}
+
 <table class="table-sm table-bordered">
     <thead>
         <tr>
@@ -35,7 +37,7 @@
                 {{ transacao.moeda }}
             </td>
             <td class="td-align-right">
-                {{ transacao.total }}
+                {{ transacao.total | currencyCents }}
             </td>
         </tr>
         {% endfor %}

@@ -1,4 +1,5 @@
 {% extends 'sistema/bootstrap/base.html' %}
+{% load currency_filters %}
 
 {% block title %}Clientes - Registros{% endblock %}
 {% block headerTitle %}Registros - Clientes{% endblock %}
@@ -74,7 +75,7 @@
                 {% for row in totais %}
                 <tr>
                     <td>{{ row.codigo }}</td>
-                    <td class="td-align-right">{{ row.valor }}</td>
+                    <td class="td-align-right">{{ row.valor | currencyCents }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

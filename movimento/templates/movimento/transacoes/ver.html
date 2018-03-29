@@ -1,5 +1,7 @@
 {% extends 'sistema/bootstrap/base.html' %}
 
+{% load currency_filters %}
+
 {% block title %}Transações - Movimento{% endblock %}
 {% block headerTitle %}Movimento - Transações{% endblock %}
 
@@ -27,7 +29,7 @@
 <br><br>
 
 <p>
-    Total: {{ transacao.moeda }} {{ transacao.total }}
+    Total: {{ transacao.moeda }} {{ transacao.total | currencyCents }}
 </p>
    
 {% include "movimento/transacoes/tabelas/itensDeLinhaTotal.html" %}
