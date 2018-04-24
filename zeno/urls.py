@@ -32,4 +32,4 @@ urlpatterns = [
     path('money/', include('money.urls')),
     path('allcents/', include('benny.urls')),
     path('zenousers/', include('zenousers.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.WELL_KNOWN_URL, document_root=settings.WELL_KNOWN)
