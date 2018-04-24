@@ -25,7 +25,8 @@ SECRET_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['testserver', '127.0.0.1']
+# ALLOWED_HOSTS = ['testserver', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['pontual.nfshost.com', 'lagologico.com', 'www.lagologico.com']
 
 
 # Application definition
@@ -133,15 +134,21 @@ STATIC_URL = '/static/'
 
 # Needed in PythonAnywhere to collectstatic
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = '/home/protected/zeno/static/'
 
 # http://heitorchang.github.io/djangonotes/2017_03_30_index_custom_font.html
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    '/home/protected/zeno/static/'
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/home/public/media/'
 
 LOGIN_URL = '/zenousers/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+WELL_KNOWN_URL = "/.well-known/"
+WELL_KNOWN = "/home/public/.well-known"
