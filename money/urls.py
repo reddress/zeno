@@ -83,7 +83,7 @@ urlpatterns = [
     # Account Type summary: filter transactions
     
     # Account Type summary for default currency, given 'from' and 'to' dates
-    path('accountType/<int:from_y>/<int:from_m>/<int:from_d>/<int:to_y>/<int:to_m>/<int:to_d>/',
+    path('accountType/<int:from_d>/<int:from_m>/<int:from_y>/<int:to_d>/<int:to_m>/<int:to_y>/',
          login_required(account_type.AccountTypeListTime.as_view()),
          name='accountTypeListTime'),
 
@@ -93,16 +93,16 @@ urlpatterns = [
          name='accountTypeListCurrency'),
 
     # Account Type summary for given currency and 'from' and 'to' dates
-    path('accountType/<str:currency_code>/<int:from_y>/<int:from_m>/<int:from_d>/<int:to_y>/<int:to_m>/<int:to_d>/',
+    path('accountType/<str:currency_code>/<int:from_d>/<int:from_m>/<int:from_y>/<int:to_d>/<int:to_m>/<int:to_y>/',
          login_required(account_type.AccountTypeListCurrencyTime.as_view()),
          name='accountTypeListCurrencyTime'),
 
     # Account Type summary starting from given date
-    path('accountType/<int:from_y>/<int:from_m>/<int:from_d>/',
+    path('accountType/<int:from_d>/<int:from_m>/<int:from_y>/',
          login_required(account_type.AccountTypeListFrom.as_view()),
          name='accountTypeListFrom'),
     
-    path('accountType/<str:currency_code>/<int:from_y>/<int:from_m>/<int:from_d>/',
+    path('accountType/<str:currency_code>/<int:from_d>/<int:from_m>/<int:from_y>/',
          login_required(account_type.AccountTypeListCurrencyFrom.as_view()),
          name='accountTypeListCurrencyFrom'),
 
@@ -110,7 +110,7 @@ urlpatterns = [
     # Account summary: filter transactions
 
     # Account summary for default currency, given 'from' and 'to' dates
-    path('account/<int:pk>/<int:from_y>/<int:from_m>/<int:from_d>/<int:to_y>/<int:to_m>/<int:to_d>/',
+    path('account/<int:pk>/<int:from_d>/<int:from_m>/<int:from_y>/<int:to_d>/<int:to_m>/<int:to_y>/',
          login_required(account.AccountDetailTime.as_view()),
          name='accountDetailTime'),
 
@@ -120,16 +120,16 @@ urlpatterns = [
          name='accountDetailCurrency'),
 
     # Account summary for given currency and 'from' and 'to' dates
-    path('account/<int:pk>/<str:currency_code>/<int:from_y>/<int:from_m>/<int:from_d>/<int:to_y>/<int:to_m>/<int:to_d>/',
+    path('account/<int:pk>/<str:currency_code>/<int:from_d>/<int:from_m>/<int:from_y>/<int:to_d>/<int:to_m>/<int:to_y>/',
          login_required(account.AccountDetailCurrencyTime.as_view()),
          name='accountDetailCurrencyTime'),
 
     # Account summary starting from given date
-    path('account/<int:pk>/<int:from_y>/<int:from_m>/<int:from_d>/',
+    path('account/<int:pk>/<int:from_d>/<int:from_m>/<int:from_y>/',
          login_required(account.AccountDetailFrom.as_view()),
          name='accountDetailFrom'),
     
-    path('account/<int:pk>/<str:currency_code>/<int:from_y>/<int:from_m>/<int:from_d>/',
+    path('account/<int:pk>/<str:currency_code>/<int:from_d>/<int:from_m>/<int:from_y>/',
          login_required(account.AccountDetailCurrencyFrom.as_view()),
          name='accountDetailCurrencyFrom'),
 

@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}ZMoney{% endblock %}</title>
+        <link rel="stylesheet" href="{% static "css/pure/pure-min.css" %}">
+        <link rel="stylesheet" href="{% static "css/pure/pure-grids-responsive-min.css" %}">
+        <link rel="stylesheet" href="{% static "css/money-style.css" %}">
+    </head>
+    <body>
+
+        <!-- TOOLBAR WITH FILTERS, HIDDEN FOR NOW -->
+        <div class="pure-g hidden">
+            <div class="pure-u-1 title">
+                <div class="pure-g">  <!-- toolbar -->
+                    <div class="pure-u-1 pure-u-md-1-8 flex-align-middle">  <!-- site name -->
+                        ZMoney
+                    </div>  <!-- site name -->
+                    
+                    <div class="pure-u-1 pure-u-md-1-2">  <!-- currency, date filters -->
+                        <form class="pure-form no-padding">
+                            <fieldset>
+                                <div class="pure-g">
+                                    <div class="pure-u-1 pure-u-md-1-5 flex-align-middle">  <!-- currency filter -->
+                                        <div class="pure-menu pure-menu-horizontal">
+                                            <select id="currencyCode">
+                                                <option>BRL</option>
+                                                <option>TWD</option>
+                                                <option>USD</option>
+                                            </select>
+                                        </div>
+                                    </div>  <!-- currency filter -->
+
+                                    <div class="pure-u-1 pure-u-md-2-5 flex-align-middle">  <!-- date filter -->
+                                        <input type="text" placeholder="Start date" size="8">
+                                        <input type="text" placeholder="End date" size="8">
+                                        <input type="button" class="pure-button pure-button-primary" value="Filter">
+                                    </div>  <!-- date filter -->
+                                </div>  <!-- pure-g -->
+                            </fieldset>
+                        </form>
+                    </div>  <!-- currency, date filters -->
+                    
+                    <div class="pure-u-1 pure-u-md-3-8 flex-align-middle">  <!-- search -->
+                        <form class="pure-form no-padding">
+                            <fieldset>
+                                <input type="text" placeholder="Search">
+                                <input type="submit" class="pure-button pure-button-primary" value="Go">
+                            </fieldset>
+                        </form>
+                    </div>  <!-- search -->
+
+                </div>  <!-- toolbar -->
+            </div>  <!-- title -->
+        </div>  <!-- pure-g -->
+
+
+        <!-- Simple Toolbar -->
+        <div class="pure-g">
+            <div class="pure-u-1 title">
+                <div class="pure-g">  <!-- toolbar -->
+                    <div class="pure-u-1 pure-u-md-1-8 flex-align-middle">  <!-- site name -->
+                        ZMoney
+                    </div>  <!-- site name -->
+
+                    <div class="pure-u-1 pure-u-md-7-8 flex-align-middle align-right">  <!-- search -->
+                        <form class="pure-form no-padding">
+                            <fieldset>
+                                <input type="text" placeholder="Search">
+                                <input type="submit" class="pure-button pure-button-primary" value="Go">
+                            </fieldset>
+                        </form>
+                    </div>  <!-- search -->
+                </div>  <!-- toolbar -->
+            </div>  <!-- title -->
+        </div>  <!-- simple toolbar -->
+        
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <div class="pure-menu pure-menu-horizontal">
+
+                    {% if user.is_authenticated %}
+
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                            <a href="#" class="pure-menu-link black">Browse</a>
+                            <ul class="pure-menu-children">
+                                <li class="pure-menu-item"><a href="{% url "money:accountTypeList" %}" class="pure-menu-link">Account Types</a></li>
+                                <li class="pure-menu-item"><a href="{% url "money:accountList" %}" class="pure-menu-link">Accounts</a></li>
+                                <li class="pure-menu-item"><a href="{% url "money:transactionList" %}" class="pure-menu-link">Transactions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
+                            <a href="#" class="pure-menu-link black">New</a>
+                            <ul class="pure-menu-children">
+                                <li class="pure-menu-item"><a href="{% url "money:accountTypeCreate" %}" class="pure-menu-link">Account Type</a></li>
+                                <li class="pure-menu-item"><a href="{% url "money:accountCreate" %}" class="pure-menu-link">Account</a></li>
+                                <li class="pure-menu-item"><a href="{% url "money:transactionCreate" %}" class="pure-menu-link">Transaction</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item"><a href="{% url "admin:index" %}" class="pure-menu-link black">Admin</a></li>
+                        <li class="pure-menu-item"><a href="{% url "zenousers:logout" %}" class="pure-menu-link black">Log out</a></li>
+                    </ul>
+
+                    {% else %}
+
+                    <ul class="pure-menu-list">
+                        <li class="pure-menu-item"><a href="{% url "zenousers:login" %}?next={% url "money:index" %}" class="pure-menu-link black">Log in</a></li>
+                    </ul>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-g">
+            <div class="pure-u-1 main-content">
+                {% block moneyContent %}{% endblock %}
+            </div>
+        </div>
+        
+        <script src="{% static "js/pure/pure-menus.js" %}"></script>
+    </body>
+</html>
