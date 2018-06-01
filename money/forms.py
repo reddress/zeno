@@ -5,7 +5,7 @@ from .models import Account, Transaction
 class AccountForm(ModelForm):
     class Meta:
         model = Account
-        fields = ('account_type', 'name', 'abbreviation')
+        fields = ('account_type', 'name')
 
         
 class TransactionForm(ModelForm):

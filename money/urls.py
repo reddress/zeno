@@ -133,4 +133,19 @@ urlpatterns = [
          login_required(account.AccountDetailCurrencyFrom.as_view()),
          name='accountDetailCurrencyFrom'),
 
+    # Portuguese predefined categories
+    path('bens/', login_required(account_type.Bens.as_view()),
+         name='bens'),
+
+    path('receitas/', login_required(account_type.Receitas.as_view()),
+         name='receitas'),
+
+    path('despesas/', login_required(account_type.Despesas.as_view()),
+         name='despesas'),
+
+    path('credito/', login_required(account_type.Credito.as_view()),
+         name='credito'),
+
+    path('outros/', login_required(account_type.Outros.as_view()),
+         name='outros'),
 ]

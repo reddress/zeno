@@ -2,12 +2,18 @@
 
 {% block moneyContent %}
 
-<h1>Account Type</h1>
+<h1>{{ object }}</h1>
 
+<!--
 <p>
     <a href="{% url "money:accountTypeList" %}">All Account Types</a>
 </p>
+-->
 
-{{ object }} <a href="{% url "money:accountTypeUpdate" object.id %}">edit</a> <a href="{% url "money:accountTypeDelete" object.id %}">delete</a>
+<!-- {{ object }} <a href="{% url "money:accountTypeUpdate" object.id %}">edit</a> <a href="{% url "money:accountTypeDelete" object.id %}">delete</a> -->
+
+{% for account in object.account_set.all %}
+{{ account }} {{ account.balance }}
+{% endfor %}
 
 {% endblock %}

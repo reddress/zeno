@@ -64,7 +64,7 @@ class Account(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     account_type = models.ForeignKey(AccountType, on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
-    abbreviation = models.CharField(max_length=20)
+    # abbreviation = models.CharField(max_length=20)
 
     class Meta:
         ordering = ['owner', 'name']
@@ -112,7 +112,7 @@ class Account(models.Model):
 
     def __str__(self):
         # return "{} [{}]".format(self.abbreviation, self.account_type.name)
-        return self.abbreviation
+        return self.name
 
 
 class Budget(models.Model):
@@ -125,7 +125,7 @@ class Budget(models.Model):
         ordering = ['owner', 'account']
         
     def __str__(self):
-        return "{} budget: {} {}".format(self.account.abbreviation, self.currency.code, self.amount)
+        return "{} budget: {} {}".format(self.account.name, self.currency.code, self.amount)
 
     
 class Transaction(models.Model):
@@ -148,8 +148,8 @@ class Transaction(models.Model):
         return display_str.format(localtime(self.when).strftime("%d/%m/%y %H:%M:%S"),
                                   self.name,
                                   self.currency.symbol, self.amount,
-                                  self.debit.abbreviation,
-                                  self.credit.abbreviation)
+                                  self.debit.name,
+                                  self.credit.name)
 
     
 class Tag(models.Model):

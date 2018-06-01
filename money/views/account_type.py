@@ -126,3 +126,41 @@ class AccountTypeDelete(DeleteView):
 
     def get_queryset(self):
         return AccountType.objects.filter(owner=self.request.user, pk=self.kwargs['pk'])
+
+
+class Bens(DetailView):
+    template_name = "money/predefined/bens.html"
+    
+    def get_object(self):
+        return AccountType.objects.get(owner=self.request.user, name="Bens")
+    
+        
+class Receitas(DetailView):
+    template_name = "money/predefined/receitas.html"
+    
+    def get_object(self):
+        return AccountType.objects.get(owner=self.request.user, name="Receitas")
+    
+    
+class Despesas(DetailView):
+    template_name = "money/predefined/despesas.html"
+    
+    def get_object(self):
+        return AccountType.objects.get(owner=self.request.user, name="Despesas")
+    
+    
+class Credito(DetailView):
+    template_name = "money/predefined/credito.html"
+    
+    def get_object(self):
+        return AccountType.objects.get(owner=self.request.user, name="Crédito")
+    
+    
+class Outros(DetailView):
+    template_name = "money/predefined/outros.html"
+    
+    def get_object(self):
+        return AccountType.objects.get(owner=self.request.user, name="Outros")
+    
+    
+

@@ -4,35 +4,68 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{% block title %}ZMoney{% endblock %}</title>
+        <title>{% block title %}Okane{% endblock %}</title>
         <link rel="stylesheet" href="{% static "css/bootstrap-4.0.0.min.css" %}">
         <link rel="stylesheet" href="{% static "css/pickadate-default.css" %}">
         <link rel="stylesheet" href="{% static "css/pickadate-default.date.css" %}">
         <script src="{% static "js/jquery-3.3.1.slim.min.js" %}"></script>
+        <script src="{% static "js/bootstrap-4.0.0.bundle.min.js" %}"></script>
         <script src="{% static "js/pickadate.js" %}"></script>
         <script src="{% static "js/pickadate-date.js" %}"></script>
     </head>
     
     <body>
-        <input type="text" id="picka">
         {% if user.is_authenticated %}
 
-        Welcome back,
-        {{ user.username }}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="{% url "money:index" %}">{{ user.username }} の Okane</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "money:bens" %}">Bens</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "money:receitas" %}">Receitas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "money:despesas" %}">Despesas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "money:credito" %}">Crédito</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "money:outros" %}">Outras Contas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "money:accountCreate" %}">Nova Conta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url "money:transactionCreate" %}">Nova Transação</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Busca" aria-label="Busca">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Busca</button>
+                </form>
+            </div>
+        </nav>
+        
         {% else %}
         
-        <ul class="pure-menu-list">
-            <li class="pure-menu-item"><a href="{% url "zenousers:login" %}?next={% url "money:index" %}" class="pure-menu-link black">Log in</a></li>
-        </ul>
+        <a href="{% url "zenousers:login" %}?next={% url "money:index" %}" class="pure-menu-link black">Log in</a>
         
         {% endif %}
 
-        {% block moneyContent %}{% endblock %}
-        
-        <script src="js/bootstrap.bundle.min.js"></script>
-        <script>
-            $("#picka").pickadate({'format': 'dd/mm/yyyy'});
-        </script>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    {% block moneyContent %}{% endblock %}
+                </div>
+            </div>
+        </div>
     </body>
 </html>
