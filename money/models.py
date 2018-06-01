@@ -119,7 +119,7 @@ class Budget(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=12, decimal_places=2, default=Decimal("0.00"))
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
 
     class Meta:
         ordering = ['owner', 'account']
@@ -134,7 +134,7 @@ class Transaction(models.Model):
     credit = models.ForeignKey(Account, on_delete=models.CASCADE, related_name="credit_transactions")
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
-    amount = models.DecimalField(max_digits=12, decimal_places=2, default=Decimal("0.00"))
+    amount = models.DecimalField(max_digits=12, decimal_places=2)
     when = models.DateTimeField()
 
     class Meta:
