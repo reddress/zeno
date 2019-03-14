@@ -90,7 +90,7 @@ class Configuracao(Model):
         verbose_name_plural = "Configurações"
         
     def __str__(self):
-        return "Empresa ativa: " + self.empresa_ativa.nome
+        return "Configuração"
 
 
 class Produto(Model):
