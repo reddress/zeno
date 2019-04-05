@@ -17,12 +17,17 @@
   </head>
   
   <body>
-	<form class="greek-form">
+	<form class="greek-form" action="{% url "forlang:addEntry" %}" method="POST">
+	  {% csrf_token %}
       <div class="answer-row">
-        <input type="text" class="greek-keyboard" id="greek" size="32" autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Greek" autofocus>
+		<input type="hidden" name="redir" value="{% url "forlang:index" %}">
+        <input type="text" class="greek-keyboard" name="foreign" size="32" autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Greek" autofocus>
 		<br><br>
-		<input type="text" id="english" placeholder="English" size="50"><br><br>
-        <input type="text" class="greek-keyboard" id="example" size="80" autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Example">
+		<input type="text" name="english" placeholder="English" size="50"><br><br>
+        <input type="text" class="greek-keyboard" name="example" size="80" autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Example">
+
+		<br><br>
+		<input type="submit">
       </div>
 	</form>
 

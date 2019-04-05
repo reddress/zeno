@@ -6,4 +6,5 @@ app_name = 'forlang'
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('addEntry/', views.addEntry, name='addEntry'),
 ]
