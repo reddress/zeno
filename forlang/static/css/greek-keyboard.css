@@ -1,0 +1,7 @@
+input[type=text] {
+    font-family: Times, serif;
+    font-size: 18px;
+    padding: 5px;
+    vertical-align: middle;
+    display: inline-block;
+}

@@ -1,3 +1,44 @@
-<body>
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Greek ForLang</title>
+    <link rel="stylesheet" href="{% static "/css/greek-visual-keyboard.css" %}">
+    <link rel="stylesheet" href="{% static "/css/quiz.css" %}">
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}">
+	<style>
+	  .greek-form {
+	  text-align: center;
+	  }
+	</style>
+	
+  </head>
+  
+  <body>
+	<form class="greek-form">
+      <div class="answer-row">
+        <input type="text" class="greek-keyboard" id="greek" size="32" autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Greek" autofocus>
+		<br><br>
+		<input type="text" id="english" placeholder="English" size="50"><br><br>
+        <input type="text" class="greek-keyboard" id="example" size="80" autocapitalize="off" autocorrect="off" autocomplete="off" placeholder="Example">
+      </div>
+	</form>
 
-</body>
+
+	
+    <script src="{% static "/js/jquery.js" %}"></script>
+
+    <!-- preload icons -->
+    <script src="{% static "/js/preload-icons.js" %}"></script>
+    
+    <!-- quiz scripts -->
+    <script src="{% static "/js/quiz.js" %}"></script>
+
+    <script src="{% static "/js/greek-charmap.js" %}"></script>
+    <script src="{% static "/js/greek-keymap.js" %}"></script>
+    <script src="{% static "/js/greek-by-replacement.js" %}"></script>    
+  </body>
+</html>
+

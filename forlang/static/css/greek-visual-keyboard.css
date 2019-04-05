@@ -1,0 +1,97 @@
+input[type=text] {
+    font-family: Times, serif;
+    font-size: 1.5em;
+    padding: 5px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+#visual-keyboard {
+    text-align: center;
+    display: table;
+    margin: 0 auto;
+}
+
+#answer {
+    font-family: Times, serif;
+    font-size: medium;
+    padding: 5px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+.keyboard-row {
+    float: left;
+    /* text-align: center; */
+    /* display: table-row; */
+    /* border: 1px solid blue; */
+    width: 100%;
+    height; 1em;
+    white-space: nowrap;
+    vertical-align: bottom;
+}
+
+.key {
+    display: inline-block;
+    /* float: left; */
+    border: 1px solid gray;
+    padding: 0.1em;
+    margin: 2px;
+    width: 1.1em;
+    height: 2.2em;
+
+    line-height: 95%;
+
+    font-family: Times, serif;
+    font-size: 0.9em;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.key.shift {
+    text-align: center;
+    width: 23px;
+    height: 1.8em;
+    background-color: #CCCCFF;
+}
+
+.key.accented {
+    padding-top: 5px;
+    background-color: wheat;
+    height: 1.6em;
+}
+
+.key.combining {
+    height: 1.8em;
+    width: 28px;
+}
+
+.key.special {
+    padding-left: 5px;
+    text-align: center;
+    width: 45px;
+    height: 1.8em;
+    background-color: white;
+    color: white;
+}
+
+.key.space {
+    width: 10.45em;
+    height: 1.5em;
+}
+
+.key.highlight {
+    background-color: lightgray;
+}
+
+.spacer {
+    display: inline-block;
+    float: left;
+    padding: 2px;
+    margin: 0;
+    width: 0.3em;
+}
+
+.english {
+    color: #77AAFF;
+}

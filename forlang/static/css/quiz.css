@@ -1,0 +1,60 @@
+.quizWrapper {
+    text-align: center;
+}
+
+.quiz {
+    text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+    padding-bottom: 5px;
+}
+
+#quizTitle {
+    font-family: Times, serif;
+    font-size: medium;
+}
+
+#prompt {
+    text-align: center;
+    font-family: Times, serif;
+    font-size: medium;
+}
+
+#answer {
+    display: inline-block;
+    float: left;
+}    
+
+/*
+.answer-row {
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+*/
+
+.answer-row {
+    display: inline-block;
+    text-align: center;
+}
+
+.icon-box {
+    display: inline-block;
+    float: left;
+    width: 32px;
+    height: 32px;
+    padding: 5px;
+    align-self: center;
+}
+
+.icon-box.hidden {
+    visibility: hidden;
+}
+
+.icon-box.display-none {
+    display: none;
+}
+
+#collectedAnswers td.collected-answer {
+    background-color: #ccffee;
+}
